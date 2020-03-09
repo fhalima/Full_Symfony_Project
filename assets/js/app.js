@@ -258,9 +258,4 @@ document.body.addEventListener('transitionend', function(){
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 require('../css/app.scss');
-// require the JavaScript
-// require('bootstrap');
-// require('bootstrap-star-rating');
-// // require 2 CSS files needed
-// require('bootstrap-star-rating/css/star-rating.css');
-// require('bootstrap-star-rating/themes/krajee-svg/theme.css');
+
