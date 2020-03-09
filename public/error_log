@@ -1,0 +1,18 @@
+[22-Feb-2020 23:37:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Flex\Command\GenerateIdCommand' not found in /home/qbdmufrvkcgi/public_html/traiteur-succulence.com/vendor/symfony/flex/src/Flex.php:248
+Stack trace:
+#0 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(236): Symfony\Flex\Flex->activate(Object(Composer\Composer), Object(Composer\IO\ConsoleIO))
+#1 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(205): Composer\Plugin\PluginManager->addPlugin(Object(Symfony\Flex\Flex))
+#2 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(261): Composer\Plugin\PluginManager->registerPackage(Object(Composer\Package\CompletePackage))
+#3 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(76): Composer\Plugin\PluginManager->loadRepository(Object(Composer\Repository\InstalledFilesystemRepository))
+#4 phar:///opt/cpanel/composer/bin/composer/src/Composer/Factory.php(384): Composer\Plugin\PluginManager->loadInstalledPlugins()
+#5 phar:///opt/ in /home/qbdmufrvkcgi/public_html/traiteur-succulence.com/vendor/symfony/flex/src/Flex.php on line 248
+[22-Feb-2020 23:38:44 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Flex\Command\GenerateIdCommand' not found in /home/qbdmufrvkcgi/public_html/traiteur-succulence.com/vendor/symfony/flex/src/Flex.php:248
+Stack trace:
+#0 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(236): Symfony\Flex\Flex->activate(Object(Composer\Composer), Object(Composer\IO\ConsoleIO))
+#1 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(205): Composer\Plugin\PluginManager->addPlugin(Object(Symfony\Flex\Flex))
+#2 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(261): Composer\Plugin\PluginManager->registerPackage(Object(Composer\Package\CompletePackage))
+#3 phar:///opt/cpanel/composer/bin/composer/src/Composer/Plugin/PluginManager.php(76): Composer\Plugin\PluginManager->loadRepository(Object(Composer\Repository\InstalledFilesystemRepository))
+#4 phar:///opt/cpanel/composer/bin/composer/src/Composer/Factory.php(384): Composer\Plugin\PluginManager->loadInstalledPlugins()
+#5 phar:///opt/ in /home/qbdmufrvkcgi/public_html/traiteur-succulence.com/vendor/symfony/flex/src/Flex.php on line 248
+[23-Feb-2020 00:31:03 UTC] 2020-02-23T00:31:03+00:00 [info] User Deprecated: Using the WebserverBundle is deprecated since Symfony 4.4. The new Symfony local server has more features, you can use it instead.
+[23-Feb-2020 00:31:03 UTC] 2020-02-23T00:31:03+00:00 [info] User Deprecated: Using the WebserverBundle is deprecated since Symfony 4.4. The new Symfony local server has more features, you can use it instead.

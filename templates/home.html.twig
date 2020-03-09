@@ -1,0 +1,104 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block content %}
+{#   <section class="section hero is-medium has-carousel">#}
+    {#        <div id="carousel-demo" class="hero-carousel">#}
+    {#            <div class="item-1">#}
+    {#                <figure class="image is-100vh">#}
+    {#                    <img src="{{asset('images/carousel0.jpg') }}" class="is-100vh">#}
+    {#                </figure>#}
+    {#            </div>#}
+    {#            <div class="item-2">#}
+    {#                <figure class="image is-100vh">#}
+    {#                    <img src="{{asset('images/carousel1.jpg') }}" class="is-100vh">#}
+    {#                </figure>#}
+    {#            </div>#}
+    {#            <div class="item-3">#}
+    {#                <figure class="image is-100vh">#}
+    {#                    <img src="{{asset('images/carousel3.jpg') }}" class="is-100vh">#}
+    {#                </figure>#}
+    {#            </div>#}
+    {#            <div class="item-4">#}
+    {#                <figure class="image is-100vh">#}
+    {#                    <img src="{{asset('images/carousel4.jpg') }}" class="is-100vh">#}
+    {#                </figure>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="hero-head"></div>#}
+    {#        <div class="hero-body"></div>#}
+    {#        <div class="hero-foot"></div>#}
+    {#    </section>#}
+
+    <section id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-item">
+            <figure  class=" image is-100vh">
+            <img class="d-block w-100 " src="{{asset('images/carousel0.jpg') }}" alt="Salade-végétarienne">
+            </figure>
+            <div class="carousel-caption d-md-block">
+                <h2 class="carousel-titre">Succulense Traiteur, partenaire de toutes vos occasions</h2>
+                <p class="carousel-text" >et pour les moments les plus intimes</p>
+            </div>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <figure  class=" image is-100vh">
+                <img class="d-block w-100" src="{{asset('images/carousel1.jpg') }}" alt="Couscous">
+                </figure>
+                <div class="carousel-caption d-md-block">
+                    <h2 class="carousel-titre">Succulense Traiteur, vous propose une large sélection de produits</h2>
+                    <p class="carousel-text">adaptés à vos envies et votre budget</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <figure  class=" image is-100vh">
+                <img class="d-block w-100" src="{{asset('images/carousel2.jpg') }}" alt="Tagine sucré">
+                </figure>
+                <div class="carousel-caption d-md-block">
+                    <h2 class="carousel-titre">...</h2>
+                    <p class="carousel-text">...</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <figure  class=" image is-100vh">
+                <img class="d-block w-100" src="{{asset('images/carousel3.jpg') }}" alt="Salade fruits-de-mer">
+                </figure>
+                <div class="carousel-caption  d-md-block">
+                    <h2 class="carousel-titre">...</h2>
+                    <p class="carousel-text">...</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <figure  class=" image is-100vh">
+                <img class="d-block w-100" src="{{asset('images/carousel4.jpg') }}" alt="Second slide">
+                </figure>
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="carousel-titre">...</h2>
+                    <p class="carousel-text">...</p>
+                </div>
+            </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </section>
+    <div class="section is-vauto">
+        {% include 'menu/menu_list.html.twig'%}
+    </div>
+{% endblock %}

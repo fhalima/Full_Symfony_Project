@@ -1,0 +1,44 @@
+<h1 class="title has-text-primary has-text-centered"> annonce_list|length Annonces</h1>
+
+{#{% for annonce in annonce_list %}#}
+    {# @var annonce App/Entity/Annonce  #}
+    <div class="box">
+        <article class="media">
+            <div class="media-left">
+                <a href="">
+                    <figure class="image is-128x128">
+                        <img src="#" alt="Image">
+                    </figure>
+                </a>
+
+            </div>
+
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <span class="tag is-primary">
+                            /10
+                        </span>
+                        {#                        <a href="{{ path('record_page', {}) }}" class="has-text-primary">#}
+                        <strong>titre</strong>
+                        {#                        </a>#}
+                        <small>descriptioncourte</small>
+                        <br>
+                    <div class="level">
+                        <small class="level-left">
+                            {#                            <strong>Lieu: {{ annonce.adresse }},  {{ annonce.cp }} {{ annonce.ville }},  {{ annonce.pays }}, </strong>#}
+                            <a href="{{ path('home') }}">
+                                <strong>annonce.iduser.pseudo  </strong>
+                            </a>
+                        </small>
+                        <small class="level-right ">
+                            <strong class="has-text-danger">annonce.prix|number_format(2) &#8364; </strong>
+                        </small>
+                    </div>
+                    {#                        {{  }}#}
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+{#{% endfor %}#}

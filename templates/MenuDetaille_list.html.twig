@@ -1,0 +1,55 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="level">
+            <h2 class="title level-left">
+
+                <span class="tag is-primary">
+
+            </span>
+            </h2>
+            <a href="{{ path('home') }}" class="button is-success level-right" type="submit">
+              Contacter
+            </a>
+        </div>
+
+        <article class="media">
+            <div class="media-left" >
+                {#            <p class=" media-left">#}
+                <figure class="image is-300x300">
+                    <img src="#" alt="image">
+                </figure>
+            </div>
+            {#            </p>#}
+            <div class="media-content">
+                <div class="content">
+
+                    <p>
+                        <strong> Description: </strong><br>
+
+                    </p>
+
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <div class="section">
+        <div class="level">
+            <small class="level-item"><i class="fas fa-calendar-alt">Date de publication: </i> </small>
+            <small class="level-item"><i class="fas fa-user"> </i></small>
+            <small class="level-item"><i class="fas fa-euro-sign">  &#8364;</i></small>
+            <small class="level-item"><i class="fa fa-map-marker" aria-hidden="true">Adresse: , ,  </i></small>
+        </div>
+        <div>
+
+        </div>
+    </div>
+{% endblock %}
+

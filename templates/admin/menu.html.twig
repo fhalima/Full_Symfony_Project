@@ -1,0 +1,103 @@
+{% extends "admin/_template.html.twig" %}
+
+{% block title %}
+    Back Office
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section">
+        <h2 class="title">
+            Gestion des Menus
+        </h2>
+        <p></p>
+
+        <hr>
+        <h3 class="subtitle">
+
+        </h3>
+
+        <div class="table-container is-scrollable">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
+                <thead>
+                <tr>
+                    <th>Id menu</th>
+                    <th> titre</th>
+                    <th>description courte</th>
+                    <th>description longue</th>
+                    <th>photo principale</th>
+                    <th>date d'enregistrement</th>
+                    <th>actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for menu in menuList %}
+                    <tr>
+                        <th>{{ menu.id }}</th>
+                        <td>{{ menu.titre }}</td>
+                        <td>{{ menu.descriptionCourte }}</td>
+                        <td>{{ menu.descriptionLongue }}</td>
+                        <td>{{ menu.photo }}</td>
+                        <td>{{ menu.dateenregistrement|date('d/m/Y') }}</td>
+                        <td>
+                            <small> <a href="{{ path('admin_menu',{id:menu.id }) }}"> <i class="fas fa-search"></i>
+                                </a></small>
+                            <small > <a  href="{{ path('admin_menu_update',{id: menu.id}) }}"> <i class="far fa-edit"></i>
+                                </a></small>
+                            <small> <a href="{{ path('admin_menu_delete',{id: menu.id}) }}"> <i
+                                            class="far fa-trash-alt"></i> </a></small>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+
+        {% include '/includes/flash_message.html.twig' %}
+
+        <div class="form_container columns " >
+            <div class="column is-half">
+                {{ form_start(menu_form) }}
+
+                {#                {{ form_row(user_form.id , {label: 'Id utilisateur', value: user_curr.id}) }}#}
+                {{ form_row(menu_form.titre, {label: 'Titre', value: menu_curr.titre}) }}
+                {{ form_row(menu_form.description_courte, {label: 'Description courte', value: menu_curr.descriptionCourte}) }}
+                {{ form_row(menu_form.description_longue, {label: 'description longue', value: menu_curr.descriptionLongue}) }}
+
+            </div>
+
+            <div class="column is-half">
+{#                            <label class="label" for="imgInp">Image Principale</label>#}
+{#                            <div class="input-group mb-3">#}
+{#                                <div class="input-group-prepend">#}
+{#                                    <span class="input-group-text">Image</span>#}
+{#                                </div>#}
+{#                                <div class="custom-file ">#}
+                {{ form_row(menu_form.photo, {'attr': {label : menu_curr.photo} }) }}
+{#                                    {% if(menu_form.photo.vars.va:lue) %}#}
+{#                                    <label class="custom-file-label" id="imgInp-label" for="photo">menu_form.photo.vars.value</label>#}
+{#                                    {% else %}#}
+{#                                    <label class="custom-file-label" id="imgInp-label" for="photo">Choisir un fichier</label>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+                <div>
+                    <img class="img-thumbnail is-150x150" id="image-P" src="{{ asset('images/menu-vide-2.jpg') }}"
+                         alt="Image Principale"/>
+                </div>
+{#                {{ menu_form.photo.vars.id }}#}
+
+                        <br>
+            <button class="button is-primary is-center" type="submit" id="submit" name="submit">
+                {{ menu_button }}
+            </button>
+
+            {{ form_end(menu_form)}}
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

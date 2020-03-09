@@ -1,0 +1,179 @@
+{% extends "_template.html.twig" %}
+{% block title %}
+    Menu - {{ menudetaille.titre }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="section has-background-white-bis ">
+        <article class="media has-background-white ">
+            <div class="media-left">
+                <figure>
+                    <p class="image ">
+                        <img src="{{ asset('images/'~menudetaille.photo) }}" class="is-300x300">
+                    </p>
+                </figure>
+                <div class="is-flex is-margin-5">
+                    {% if(menudetaille.idPhotos.photo1 is not empty) %}
+                        <figure class="media-left">
+                            <p>
+                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo1) }}" class="is-60x60">
+                            </p>
+                        </figure>
+                    {% endif %}
+                    {% if(menudetaille.idPhotos.photo2 is not empty) %}
+                        <figure class="media-left">
+                            <p>
+                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo2) }}" class="is-60x60">
+                            </p>
+                        </figure>
+                    {% endif %}
+                    {% if(menudetaille.idPhotos.photo3 is not empty) %}
+                        <figure class="media-left">
+                            <p>
+                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo3) }}" class="is-60x60">
+                            </p>
+                        </figure>
+                    {% endif %}
+                    {% if(menudetaille.idPhotos.photo4 is not empty) %}
+                        <figure class="media-left">
+                            <p>
+                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo4) }}" class="is-60x60">
+                            </p>
+                        </figure>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="media-content ">
+                <div class="content">
+                    <h1> Menu - {{ menudetaille.titre }}</h1>
+                    <p>
+                        <small>{{ menudetaille.descriptioncourte }}</small>
+                    </p>
+                    <hr>
+                    <div class="is-center is-flex">
+                        <p class="is-centered">
+                            <i class="fas fa-user is-size-4	has-text-primary "></i>
+                            <br>
+                            <span> {{ menudetaille.nbrpersonnes }} - Pers.</span>
+                        </p>
+                        <p class="is-centered">
+                            <img class="img-thumbnail is-48x48 is-no-border"
+                                 src="{{ asset('images/'~menudetaille.presentation.image) }}"
+                                 alt="Image Principale"/>
+                            <br>
+                            <span> {{ menudetaille.presentation.nom }} - Pers.</span>
+                        </p>
+
+                    </div>
+                </div>
+{#                <nav class="level is-mobile">#}
+{#                    <div class="level-left">#}
+{#                        <a class="level-item">#}
+{#                            <span class="icon is-small"><i class="fas fa-reply"></i></span>#}
+{#                        </a>#}
+{#                        <a class="level-item">#}
+{#                            <span class="icon is-small"><i class="fas fa-retweet"></i></span>#}
+{#                        </a>#}
+{#                        <a class="level-item">#}
+{#                            <span class="icon is-small"><i class="fas fa-heart"></i></span>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </nav>#}
+            </div>
+            <div class="is-flex-row is-padding-10 is-full-height is-vauto is-vcentered">
+                <div class="media-right has-text-centered has-text-weight-semibold content">
+                    {#                <button class="delete"></button>#}
+
+
+                    <span class="has-text-danger">
+                            <span class="is-size-4"> {{ menudetaille.prixunit*menudetaille.nbrpersonnes }}</span><span
+                                class="is-size-7">,00&nbsp;€</span>
+                        </span><br>
+                    <span class="is-size-8 has-text-grey"> {{ menudetaille.prixunit }},00&nbsp;€ la part</span>
+
+
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="section has-background-white-bis ">
+        <div class="is-padding-10">
+            <h2 class="is-size-4 has-background-info h-details" >Description</h2>
+            <p class="is-left is-description p-details">
+                {{ menudetaille.descriptionlongue }}
+            </p>
+        </div>
+        <hr>
+        <div>
+            <h2 class="is-size-4 has-background-primary h-details">Ingrédients</h2>
+            <p class="is-left is-ingredients p-details">
+                {{ menudetaille.ingredients }}
+            </p>
+        </div>
+        <hr>
+        <div>
+            <h2  class="is-size-4 has-background-success h-details">Suggestions</h2>
+            <p class="is-left is-suggestions p-details">
+                {{ menudetaille.suggestions }}
+            </p>
+        </div>
+    </div>
+        <hr>
+<div class="section has-text-left has-background-white-bis">
+    <h3 class="subtitle has-text-primary has-text-weight-bold">
+        Notes: {{ menudetaille.notes|length }}
+    </h3>
+
+    {% include 'includes/flash_message.html.twig' %}
+
+    {# afficher le formulaire seulement si note_form n'est pas null #}
+    {% if note_form is not null %}
+        <div class="section">
+            {{ form_start(note_form) }}
+            {{ form_row(note_form.value, {
+                label: 'Votre note'
+            }) }}
+
+            {{ form_row(note_form.comment, {
+                label: 'Commentaire (facultatif)'
+            }) }}
+
+            <button class="button is-success" type="submit">
+                Noter
+            </button>
+            {{ form_end(note_form) }}
+        </div>
+    {% endif %}
+
+    {% for note in menudetaille.notes %}
+        {# @var note \App\Entity\Note #}
+        <br>
+        <div class="card">
+            <div class="card-content">
+                <strong>
+                    Note:
+                    <span class="has-text-primary">{{ note.value }}/10</span>
+                </strong>
+                <br>
+                {{ note.comment }}
+                <hr>
+                <small>
+                    {% if is_granted('NOTE_DELETE', note) %}
+                        <a href="{{ path('menu_detaille_delete_note', {id: note.id}) }}" class="button is-danger is-small">
+                            <i class="far fa-times-circle"></i>&nbsp;
+                            Supprimer
+                        </a>
+                    {% endif %}
+
+                    Par <b>{{ note.user.pseudo }}</b>
+                    le <b>{{ note.dateenregistrement|date('d/m/Y') }}</b>
+                    à <b>{{ note.dateenregistrement|date('H:i') }}</b>.
+                </small>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+    </div>
+{% endblock %}

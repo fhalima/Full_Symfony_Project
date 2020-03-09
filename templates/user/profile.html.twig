@@ -1,0 +1,29 @@
+{% extends "_template.html.twig" %}
+{% block title %}
+    <h3> Profile </h3>
+{% endblock %}
+{% block content %}
+    <section class="section has-background-white-ter">
+        <h3>
+            {% include 'includes/flash_message.html.twig'%}
+
+            {{ form_start(profile_form) }}
+
+            {{ form_row(profile_form.email, {label: 'Adresse Email'}) }}
+            {{ form_row(profile_form.pseudo, {label: 'Pseudo'}) }}
+            {{ form_row(profile_form.nom, {label: 'Nom'}) }}
+            {{ form_row(profile_form.prenom, {label: 'Prénom'}) }}
+            {{ form_row(profile_form.telephone, {label: 'Numéro de Téléphone'}) }}
+            {{ form_row(profile_form.civilite, {label: 'Civilité'}) }}
+
+            <button class="button is-primary is-fullwidth" type="submit">
+                Mettre à jour
+            </button>
+
+            {{ form_end(profile_form) }}
+
+
+        </h3>
+    </section>
+
+{% endblock %}

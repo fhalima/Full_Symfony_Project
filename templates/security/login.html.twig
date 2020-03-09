@@ -1,0 +1,68 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    Connexion
+{% endblock %}
+
+{% block content %}
+    <div class="columns is-centered section">
+        <div class="column is-one-third box">
+            <h1 class="title has-text-primary has-text-centered">Connexion</h1>
+
+            {# si l'utilisateur est déjà connecté #}
+            {% if app.user %}
+                <div class="notification is-info">
+                    Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% endif %}
+
+            {# si une erreur survient #}
+            {% if error %}
+                <div class="notification is-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {# Affichage des messages flash #}
+            {% include 'includes/flash_message.html.twig' %}
+
+            {# formulaire de connexion #}
+            <form method="post">
+                <div class="field">
+                    <label class="label" for="inputUsername">Email ou pseudo</label>
+                    <div class="control">
+                        <input class="input" type="text" value="{{ last_username }}" name="username" id="inputUsername" required autofocus>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="inputPassword">Mot de passe</label>
+                    <div class="control">
+                        <input class="input" type="password" name="password" id="inputPassword" required>
+                    </div>
+                </div>
+
+                {# un champ caché pour la protection des failles CSRF #}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button class="button is-primary is-fullwidth" type="submit">
+                    Connexion
+                </button>
+            </form>
+
+            <hr>
+            <div class="level">
+                <div class="level-left">
+                    <a href="{{ path('send_confirmation') }}" class="button is-info is-small">
+                        <i class="far fa-envelope"></i>&nbsp;
+                        Pas reçu ?
+                    </a>
+                </div>
+                <div class="level-right">
+                    <a href="{{ path('lost_password') }}" class="button is-info is-small">
+                        <i class="fas fa-key"></i>&nbsp;
+                        Mot de passe perdu ?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

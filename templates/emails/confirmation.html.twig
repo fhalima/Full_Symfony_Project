@@ -1,0 +1,9 @@
+<h1>Confirmation du compte</h1>
+
+<p>
+    Bonjour {{ user.pseudo }},<br>
+    Pour pouvoir vous connecter, accédez au lien suivant:
+    <a href="{{ url('user_confirmation', {id: user.id, token: user.securityToken}) }}">
+        {{ url('user_confirmation', {id: user.id, token: user.securityToken}) }}
+    </a>
+</p>

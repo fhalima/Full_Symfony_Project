@@ -1,0 +1,131 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    Succulence traiteur|Contact
+{% endblock %}
+
+{% block content %}
+
+
+    {% include '/includes/flash_message.html.twig' %}
+    <div class="columns is-centered section">
+        <div class="column is-three-quarters box">
+            <h1 class="title has-text-primary has-text-centered">Nous contacter</h1>
+
+            {{ form_start(contact_form) }}
+
+            {{ form_row(contact_form.email, {label: 'Email', label_attr:{'class': 'font-weight-bold'}}) }}
+            {{ form_row(contact_form.nom, {label: 'Nom', label_attr:{'class': 'font-weight-bold'}}) }}
+            {{ form_row(contact_form.prenom, {label: 'Prenom', label_attr:{'class': 'font-weight-bold'}}) }}
+            {{ form_row(contact_form.telephone, {label: 'Telephone', label_attr:{'class': 'font-weight-bold'}}) }}
+            {{ form_row(contact_form.civilite, {label: 'Civilite', label_attr:{'class': 'font-weight-bold'}}) }}
+            {{ form_row(contact_form.objet, {label: 'Objet', label_attr:{'class': 'font-weight-bold'}}) }}
+            {{ form_row(contact_form.message, {label: 'Message', label_attr:{'class': 'font-weight-bold'}}) }}
+
+            <br>
+            <button class="button is-primary is-center" type="submit" id="submit" name="submit">
+                Envoyer
+            </button>
+
+            {{ form_end(contact_form) }}
+
+
+        </div>
+
+    </div>
+    <div class="columns is-centered section">
+        <div class="column is-three-quarters box">
+            <h2 class="title has-text-primary has-text-centered">Adresse</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20958.35600261324!2d2.3265918867724342!3d48.957398725007124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6691385571dad%3A0x7a8d68a0877a83f9!2sVilletaneuse!5e0!3m2!1sfr!2sfr!4v1583263900396!5m2!1sfr!2sfr"
+                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            <h3>Villetaneuse 93430, France.</h3>
+
+        </div>
+    </div>
+
+    {#    <div class="field">#}
+    {#        <label class="label">Name</label>#}
+    {#        <div class="control">#}
+    {#            <input class="input" type="text" placeholder="Text input">#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="field">#}
+    {#        <label class="label">Username</label>#}
+    {#        <div class="control has-icons-left has-icons-right">#}
+    {#            <input class="input is-success" type="text" placeholder="Text input" value="bulma">#}
+    {#            <span class="icon is-small is-left">#}
+    {#      <i class="fas fa-user"></i>#}
+    {#    </span>#}
+    {#            <span class="icon is-small is-right">#}
+    {#      <i class="fas fa-check"></i>#}
+    {#    </span>#}
+    {#        </div>#}
+    {#        <p class="help is-success">This username is available</p>#}
+    {#    </div>#}
+
+    {#    <div class="field">#}
+    {#        <label class="label">Email</label>#}
+    {#        <div class="control has-icons-left has-icons-right">#}
+    {#            <input class="input is-danger" type="email" placeholder="Email input" value="hello@">#}
+    {#            <span class="icon is-small is-left">#}
+    {#      <i class="fas fa-envelope"></i>#}
+    {#    </span>#}
+    {#            <span class="icon is-small is-right">#}
+    {#      <i class="fas fa-exclamation-triangle"></i>#}
+    {#    </span>#}
+    {#        </div>#}
+    {#        <p class="help is-danger">This email is invalid</p>#}
+    {#    </div>#}
+
+    {#    <div class="field">#}
+    {#        <label class="label">Subject</label>#}
+    {#        <div class="control">#}
+    {#            <div class="select">#}
+    {#                <select>#}
+    {#                    <option>Select dropdown</option>#}
+    {#                    <option>With options</option>#}
+    {#                </select>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="field">#}
+    {#        <label class="label">Message</label>#}
+    {#        <div class="control">#}
+    {#            <textarea class="textarea" placeholder="Textarea"></textarea>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="field">#}
+    {#        <div class="control">#}
+    {#            <label class="checkbox">#}
+    {#                <input type="checkbox">#}
+    {#                I agree to the <a href="#">terms and conditions</a>#}
+    {#            </label>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="field">#}
+    {#        <div class="control">#}
+    {#            <label class="radio">#}
+    {#                <input type="radio" name="question">#}
+    {#                Yes#}
+    {#            </label>#}
+    {#            <label class="radio">#}
+    {#                <input type="radio" name="question">#}
+    {#                No#}
+    {#            </label>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="field is-grouped">#}
+    {#        <div class="control">#}
+    {#            <button class="button is-link">Submit</button>#}
+    {#        </div>#}
+    {#        <div class="control">#}
+    {#            <button class="button is-link is-light">Cancel</button>#}
+    {#        </div>#}
+    {#    </div>#}
+
+{% endblock %}

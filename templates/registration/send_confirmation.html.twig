@@ -1,0 +1,28 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    Renvoyer l'email de confirmation
+{% endblock %}
+
+{% block content %}
+<div class="columns is-centered section">
+    <div class="column is-half box">
+        <h1 class="title has-text-primary has-text-centered">
+            Renvoyer l'email de confirmation
+        </h1>
+
+        {% include 'includes/flash_message.html.twig' %}
+
+        {{ form_start(username_form) }}
+            {{ form_row(username_form.username, {
+                label: 'Identifiant du compte:'
+            }) }}
+
+            <button type="submit" class="button is-info is-fullwidth">
+                Renvoyer l'email de confirmation du compte
+            </button>
+        {{ form_end(username_form) }}
+    </div>
+</div>
+{% endblock %}
+

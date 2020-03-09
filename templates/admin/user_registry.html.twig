@@ -1,0 +1,28 @@
+<div class="form_container columns ">
+    <div class="column is-half">
+        {{ form_start(user_form) }}
+
+        {#                {{ form_row(user_form.id , {label: 'Id utilisateur', value: user_curr.id}) }}#}
+        {{ form_row(user_form.pseudo, {label: 'pseudo', value: user_curr.pseudo}) }}
+        {{ form_row(user_form.nom, {label: 'nom', value: user_curr.nom}) }}
+        {{ form_row(user_form.prenom, {label: 'Prénom', value: user_curr.prenom}) }}
+        {{ form_row(user_form.email, {label: 'Email', value: user_curr.email}) }}
+        {{ form_row(user_form.telephone, {label: 'Téléphone', value: user_curr.telephone}) }}
+        {{ form_row(user_form.agreeTerms, {label: 'Condition d\'utilisation'}) }}
+
+
+    </div>
+
+    <div class="column is-half">
+
+        {{ form_row(user_form.civilite, {label: 'Civilité', value: user_curr.civilite}) }}
+        {{ form_row(user_form.role, {label: 'Rôles', value: user_curr.getRole}) }}
+        {{ form_row(user_form.plainPassword) }}
+
+        <button class="button is-primary is-center" type="submit" id="submit" name="submit">
+            {{ user_button }}
+        </button>
+
+        {{ form_end(user_form) }}
+    </div>
+</div>

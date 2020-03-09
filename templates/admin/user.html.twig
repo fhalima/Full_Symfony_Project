@@ -1,0 +1,81 @@
+{% extends "admin/_template.html.twig" %}
+
+{% block title %}
+    Back Office
+{% endblock %}
+
+{% block content %}
+
+    <div class="section">
+        <h2 class="title">
+            Gestion des utilisateurs
+        </h2>
+        <p></p>
+
+        <hr>
+        <h3 class="subtitle">
+
+        </h3>
+
+        <div class="table-container is-scrollable">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
+                <thead>
+                <tr>
+                    <th>Id memebre</th>
+                    <th> pseudo</th>
+                    <th>nom</th>
+                    <th>prenom</th>
+                    <th>email</th>
+                    <th>téléphone</th>
+                    <th>civilité</th>
+                    <th>roles</th>
+                    <th>date d'enregistrement</th>
+                    <th>actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in userList %}
+                    <tr>
+                        <th>{{ user.id }}</th>
+                        <td>{{ user.pseudo }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.telephone }}</td>
+                        <td>{{ user.civilite }}</td>
+                        <td>
+                            {% set r ='' %}
+                            {% for role in user.roles %}
+                                {% set r = role ~',' ~ r %}
+                            {% endfor %}
+                            {{ r }}
+                        </td>
+                        <td>{{ user.dateenregistrement|date('d/m/Y') }}</td>
+                        <td>
+                            <small> <a href="{{ path('user_profile',{id:user.id }) }}"> <i class="fas fa-search"></i>
+                                </a></small>
+                            <small> <a href="{{ path('admin_user_update',{id: user.id}) }}"> <i class="far fa-edit"></i>
+                                </a></small>
+                            <small> <a href="{{ path('admin_user_delete',{id: user.id}) }}"> <i
+                                            class="far fa-trash-alt"></i> </a></small>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+
+        {% include '/includes/flash_message.html.twig' %}
+
+        {% if (user_button != 'Ajouter') %}
+            {% include '/admin/user_profile_view.html.twig' %}
+        {% else %}
+            {% include '/admin/user_registry.html.twig' %}
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
