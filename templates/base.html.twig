@@ -5,7 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="public/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.ico') }}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="/node_modules/bulma-carousel/dist/js/bulma-carousel.js" rel="stylesheet">
 {#    <title>Hello Bulma!</title>#}
@@ -14,7 +15,7 @@
 
     {#    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
 
-    <title>{% block title'Bienvenue' %}|SUCCULENCE </title>
+    <title>{% block title'Bienvenue' %}|SUCCULENCE TRAITEUR< </title>
     {% block css  %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}

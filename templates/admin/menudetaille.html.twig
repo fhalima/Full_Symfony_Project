@@ -44,13 +44,13 @@
                         {% for menudetaille in menudetailleList %}
                             <tr>
                                 <th class="action">
-                                    <small> <a href="{{ path('menu_detaille_profile',{id:menudetaille.id }) }}"> <i
+                                    <small> <a href="{{ path('menu_detaille_page',{id:menudetaille.id }) }}"> <i
                                                     class="fas fa-search"></i>
                                         </a></small>
-                                    <small> <a href="{{ path('admin_menudetaille_update',{id: menudetaille.id}) }}"> <i
+                                    <small> <a href="{{ path('admin_menudetaille_update',{id: menudetaille.id}) }}#form_anchor"> <i
                                                     class="far fa-edit"></i>
                                         </a></small>
-                                    <small> <a href="{{ path('admin_menudetaille_delete',{id: menudetaille.id}) }}"> <i
+                                    <small> <a href="{{ path('admin_menudetaille_delete',{id: menudetaille.id}) }}#form_anchor"> <i
                                                     class="far fa-trash-alt"></i> </a></small>
                                 </th>
                                 <th>{{ menudetaille.id }}</th>
@@ -83,7 +83,7 @@
 
             {% include '/includes/flash_message.html.twig' %}
 
-            <div class="form_container columns is-left">
+            <div class="form_container columns is-left" id="form_anchor">
                 <div class="column is-half ">
                     {{ form_start(menudetaille_form) }}
 

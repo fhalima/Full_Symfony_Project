@@ -59,7 +59,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/contact/{id}", name="user-contact")
+     * @Route("/contact/{id}", name="user_contact")
      */
     public function UserContact(UserRepository $userRepository, Request $request, MailerInterface $mailer)
     {
@@ -92,6 +92,7 @@ class HomeController extends AbstractController
      */
     public function Contact(Request $request, MailerInterface $mailer)
     {
+
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
 

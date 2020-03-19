@@ -13,6 +13,7 @@ use App\Entity\User;
 
 //use App\Form\AnnonceFormType;
 //use App\Form\CategorieFormType;
+use App\Form\DashboardNoteFormType;
 use App\Form\MenuDetailleFormType;
 use App\Form\MenuFormType;
 use App\Form\UserProfileFormType;
@@ -25,6 +26,7 @@ use App\Form\DashboardUserFormType;
 ////use App\Repository\PhotoRepository;
 use App\Repository\MenuDetailleRepository;
 use App\Repository\MenuRepository;
+use App\Repository\NoteRepository;
 use App\Repository\PresentationRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -61,9 +63,9 @@ class DashboardController extends AbstractController
     public function __construct(MenuRepository $menuRepository,
                                 MenuDetailleRepository $menuDetailleRepository,
                                 UserRepository $userRepository,
-                                PresentationRepository $presentationRepository
+                                PresentationRepository $presentationRepository,
 //                                ,CommentaireRepository $commentaireRepository,
-//                                NoteRepository $noteRepository,
+                                NoteRepository $noteRepository
 //                                PhotoRepository $photoRepository
     )
     {
@@ -73,7 +75,7 @@ class DashboardController extends AbstractController
         $this->userList = $userRepository->findAll();
         $this->presentationList = $presentationRepository->SelectNames($presentationRepository->findAll());
 //        $this->commentaireList = $commentaireRepository->findAll();
-//        $this->noteList = $noteRepository->findAll();
+        $this->noteList = $noteRepository->findAll();
 //        $this->photoList = $photoRepository->findAll();
 //        $this->annonceList = $annonceRepository->findAll();
 
@@ -328,7 +330,7 @@ class DashboardController extends AbstractController
 
             $menudetaille_curr = $this->menudetailleform->getData();
             $this->SetMenuDetaillePhoto($menudetaille_curr);
-            $menudetaille_curr->getPresentation()->setNom($this->menudetailleform['presentation']->getData()) ;
+            $menudetaille_curr->getPresentation()->setNom($this->menudetailleform['presentation']->getData());
             $entityManager->persist($menudetaille_curr);
 //            dd($menudetaille_curr);
             $entityManager->flush();
@@ -416,15 +418,15 @@ class DashboardController extends AbstractController
     public function SetMenuDetaillePhoto(MenuDetaille $menudetaille_curr)
     {
         $imageFile = $this->menudetailleform['photo']->getData();
-        if ($imageFile ==! null)
-        $menudetaille_curr->setPhoto($this->SaveImageFile($imageFile));
+        if ($imageFile == !null)
+            $menudetaille_curr->setPhoto($this->SaveImageFile($imageFile));
 
         $idPhotos = $menudetaille_curr->getIdPhotos();
 
         for ($i = 1; $i <= 4; $i++) {
 
             $photo = $this->menudetailleform['photo' . $i]->getData();
-            if ($photo ==! null) {
+            if ($photo == !null) {
                 $set = 'setPhoto' . $i;
                 $idPhotos->$set($this->SaveImageFile($photo));
 
@@ -434,61 +436,66 @@ class DashboardController extends AbstractController
         $menudetaille_curr->setIdPhotos($idPhotos);
     }
 
-public function SaveImageFile(UploadedFile $imageFile): ?string
-{
-    if ($imageFile) {
-        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-        // this is needed to safely include the file name as part of the URL
-        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-        $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+    public function SaveImageFile(UploadedFile $imageFile): ?string
+    {
+        if ($imageFile) {
+            $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+            $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-        // Move the file to the directory where brochures are stored
-        try {
-            $imageFile->move(
-                $this->getParameter('images_directory'),
-                $newFilename
-            );
-        } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
+            // Move the file to the directory where brochures are stored
+            try {
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+            return $newFilename;
         }
-        return $newFilename;
     }
-}
 
 //    //------------------------------------------- Dashboard Note -----------------------------------------------//
 //
-//    /**
-//     * @Route("/note", name="note")
-//     */
-//    public
-//    function NoteDashboard(NoteRepository $noteRepository)
-//    {
-//        return $this->render('admin/dashboard/note.html.twig',
-//            ['noteList' => $this->noteList]);
-//    }
-//
-//    /**
-//     * @Route("/note/delete/{id?}", name="note_delete")
-//     */
-//    public function NoteDeleteDashboard(Request $request,
-//                                        NoteRepository $noteRepository,
-//                                        EntityManagerInterface $entityManager)
-//    {
-//        $id = $request->get('id');
-//        $note_curr = $noteRepository->findOneBy(["id" => $id]);
-//
-//        $entityManager->remove($note_curr);
-//        $entityManager->flush();
-//        $this->addFlash('success', 'La note ' . $note_curr->getId() . ' a bien était supprimée.');
-//        return $this->redirectToRoute('admin_note');
-//
-//
-//        return $this->render('admin/dashboard/note.html.twig', [
-//            'noteList' => $this->noteList
-//
-//        ]);
-//    }
-//
+    /**
+     * @Route("/note", name="note")
+     */
+    public function NoteDashboard(NoteRepository $noteRepository)
+    {
+
+        return $this->render('admin/note.html.twig',
+            ['noteList' => $this->noteList]);
+    }
+
+    /**
+     * @Route("/note/delete/{id?}", name="note_delete")
+     */
+    public function NoteDeleteDashboard(Request $request,
+                                        NoteRepository $noteRepository,
+                                        EntityManagerInterface $entityManager)
+    {
+        $id = $request->get('id');
+        $note_curr = $noteRepository->findOneBy(["id" => $id]);
+        $noteForm = $this->createForm(DashboardNoteFormType::class, $note_curr);
+
+        $noteForm->handleRequest($request);
+
+        if ($noteForm->isSubmitted()) {
+            $entityManager->remove($note_curr);
+            $entityManager->flush();
+            $this->addFlash('success', 'La note ' . $note_curr->getId() . ' a bien était supprimée.');
+            return $this->redirectToRoute('admin_note');
+
+        }
+        return $this->render('admin/note.html.twig', [
+            'noteList' => $this->noteList,
+            'note_form' => $noteForm->createView(),
+            'note_curr'=>$note_curr
+        ]);
+    }
+
 //    //------------------------------------------- Dashboard Commentaire -----------------------------------------------//
 //
 //    /**

@@ -111,10 +111,11 @@ $rayon: 5px;
 
 //Mise en forme
 body {
-  background-image: url('../../public/images/image-fond-2.jpg');
+  //background-image: url('../../public/images/image-fond-2.jpg');
   background-repeat: repeat;
   background-blend-mode: screen;
-  background-color: rgba(255, 230, 184, 0.5);
+  //background-color: rgba(255, 230, 184, 0.5);
+  background-color: white;
   margin: 0 !important;
   padding: 0 !important;
   //background: white;
@@ -464,7 +465,9 @@ nav {
   height: calc(100vh - 91px) !important;
   width: auto !important;
 }
-
+.is-white{
+  background: white!important;
+}
 .is-200x200 {
   width: 200px !important;
   height: 200px !important;

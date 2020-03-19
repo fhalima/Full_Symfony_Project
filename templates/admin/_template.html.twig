@@ -1,67 +1,132 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-{#    {% if(is_granted('ROLE_ADMIN')) %}#}
-    <nav class="navbar is-flex" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="{{ path('admin_dashboard') }}">
-                <p class="subtitle is-4 has-text-primary">
-                    <i class="fab fa-buffer"></i>
-                    <b>Back Office</b>
-                </p>
-            </a>
-            <a role="button" class=" navbar-burger burger" aria-label="menu" aria-expanded="false"
-               data-target="navbarBasicExample" id="navbar-burger-id">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-        <div id="navbarBasicExample" class="navbar-menu ">
-            <div class="navbar-start">
-                <a class="navbar-item has-text-primary" href="{{ path('home') }}">{##}
-                   <strong> Accueil</strong>
+    {#    {% if(is_granted('ROLE_ADMIN')) %}#}
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+
+    <a class="navbar-brand" href="{{ path('admin_dashboard') }}">
+        <p class="subtitle is-4 has-text-primary">
+            <i class="fab fa-buffer"></i>
+            <b>Back Office</b>
+        </p>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link has-text-primary" href="{{ path('home') }}">{##}
+                    <strong> Accueil</strong>
                 </a>
+            </li>
+            <li class="nav-item">
                 <a class="navbar-item" href="{{ path('admin_user') }}">{##}
                     Utilisateurs
                 </a>
-                <a class="navbar-item" href="{{path('admin_menu')}}">{# #}
+            </li>
+            <li class="nav-item ">
+                <a class="navbar-item" href="{{ path('admin_menu') }}">{# #}
                     Menus
                 </a>
-                <a class="navbar-item" href="{{path('admin_menudetaille')}}">
+            </li>
+            <li class="nav-item ">
+                <a class="navbar-item" href="{{ path('admin_menudetaille') }}">
                     Formules/Menus-Détaillés
                 </a>
-                <a class="navbar-item" href="#">{#{{path('admin_note')}}#}
+            </li>
+            <li class="nav-item ">
+                <a class="navbar-item" href="{{path('admin_note')}}">
                     Notes
                 </a>
+            </li>
+            <li class="nav-item ">
                 <a class="navbar-item" href="#">{#{{path('admin_commentaire')}}#}
                     Commentaires
                 </a>
+            </li>
+            <li class="nav-item ">
                 <a class="navbar-item" href="#">{#{{path('admin_statistique')}}#}
                     Statistiques
                 </a>
-            </div>
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
+            </li>
+            </ul>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
 
-                        <a href="#" class="button is-primary is-small">
-                            <i class="fas fa-replay"></i>
-                            {{ app.user.pseudo }}
-                        </a>
-                        <a href="{{ path('app_logout') }}" class="button is-light is-small">
-                            Déconnexion
-                        </a>
+                            <a href="#" class="button is-primary is-small">
+                                <i class="fas fa-replay"></i>
+                                {{ app.user.pseudo }}
+                            </a>
+                            <a href="{{ path('app_logout') }}" class="button is-light is-small">
+                                Déconnexion
+                            </a>
+                        </div>
                     </div>
+
                 </div>
+       </div>
+                {#        <div class="navbar-brand">#}
+                {#            <a class="navbar-item" href="{{ path('admin_dashboard') }}">#}
+                {#                <p class="subtitle is-4 has-text-primary">#}
+                {#                    <i class="fab fa-buffer"></i>#}
+                {#                    <b>Back Office</b>#}
+                {#                </p>#}
+                {#            </a>#}
+                {#            <a role="button" class=" navbar-burger burger" aria-label="menu" aria-expanded="false"#}
+                {#               data-target="navbarBasicExample" id="navbar-burger-id">#}
+                {#                <span aria-hidden="true"></span>#}
+                {#                <span aria-hidden="true"></span>#}
+                {#                <span aria-hidden="true"></span>#}
+                {#            </a>#}
+                {#        </div>#}
+                {#                    <div id="navbarBasicExample" class="navbar-menu ">#}
+                {#                        <div class="navbar-start">#}
+                {#                            <a class="navbar-item has-text-primary" href="{{ path('home') }}">#}{##}{##}
+                {#                                <strong> Accueil</strong>#}
+                {#                            </a>#}
+                {#                            <a class="navbar-item" href="{{ path('admin_user') }}">#}{##}{##}
+                {#                                Utilisateurs#}
+                {#                            </a>#}
+                {#                            <a class="navbar-item" href="{{ path('admin_menu') }}">#}{##}{# #}
+                {#                                Menus#}
+                {#                            </a>#}
+                {#                            <a class="navbar-item" href="{{ path('admin_menudetaille') }}">#}
+                {#                                Formules/Menus-Détaillés#}
+                {#                            </a>#}
+                {#                            <a class="navbar-item" href="#">#}{##}{#{{path('admin_note')}}#}
+                {#                                Notes#}
+                {#                            </a>#}
+                {#                            <a class="navbar-item" href="#">#}{##}{#{{path('admin_commentaire')}}#}
+                {#                                Commentaires#}
+                {#                            </a>#}
+                {#                            <a class="navbar-item" href="#">#}{##}{#{{path('admin_statistique')}}#}
+                {#                                Statistiques#}
+                {#                            </a>#}
+                {#                        </div>#}
+                {#                        <div class="navbar-end">#}
+                {#                            <div class="navbar-item">#}
+                {#                                <div class="buttons">#}
 
-            </div>
-        </div>
-    </nav>
-    {% block content %}
+                {#                                    <a href="#" class="button is-primary is-small">#}
+                {#                                        <i class="fas fa-replay"></i>#}
+                {#                                        {{ app.user.pseudo }}#}
+                {#                                    </a>#}
+                {#                                    <a href="{{ path('app_logout') }}" class="button is-light is-small">#}
+                {#                                        Déconnexion#}
+                {#                                    </a>#}
+                {#                                </div>#}
+                {#                            </div>#}
 
-    {% endblock %}
-{#    {% else %}#}
-{#    {% do redirect(path('home')) %}#}
-{#    {% endif %}#}
-{% endblock %}
+                {#                        </div>#}
+                {#                    </div>#}
+                    </nav>
+                {% block content %}
+
+                {% endblock %}
+                {#    {% else %}#}
+                {#    {% do redirect(path('home')) %}#}
+                {#    {% endif %}#}
+                {% endblock %}

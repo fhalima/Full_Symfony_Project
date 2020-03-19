@@ -21,7 +21,7 @@
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
                 <thead>
                 <tr>
-                    <th>Id memebre</th>
+                    <th>Id membre</th>
                     <th> pseudo</th>
                     <th>nom</th>
                     <th>prenom</th>
@@ -55,9 +55,9 @@
                         <td>
                             <small> <a href="{{ path('user_profile',{id:user.id }) }}"> <i class="fas fa-search"></i>
                                 </a></small>
-                            <small> <a href="{{ path('admin_user_update',{id: user.id}) }}"> <i class="far fa-edit"></i>
+                            <small> <a href="{{ path('admin_user_update',{id: user.id}) }}#form_anchor"> <i class="far fa-edit"></i>
                                 </a></small>
-                            <small> <a href="{{ path('admin_user_delete',{id: user.id}) }}"> <i
+                            <small> <a href="{{ path('admin_user_delete',{id: user.id}) }}#form_anchor"> <i
                                             class="far fa-trash-alt"></i> </a></small>
                         </td>
                     </tr>
