@@ -1,43 +1,60 @@
 {% extends "_template.html.twig" %}
 {% block title %}
-    Menu - {{ menudetaille.titre }}
+    Menu - {{ menu.titre }}
 {% endblock %}
 {% block content %}
+    <div class="is-margin-20">
+        <ul class="is-inline-block" >
+            <li class="home is-inline-block">
+                <a href="{{ path("home") }}" title="Aller à la page d'accueil" itemprop="item"><span itemprop="title">Accueil</span></a>
+                <span> &gt; </span>
+            </li>
+            <li class="is-inline-block" >
+                <a href="{{ path('menu_list',{id:menu.idCategory.id}) }}" title="Aller à la page du menu principal" itemprop="item"><span itemprop="title">{{ menu.idCategory.titre }}</span></a>
+            </li>
+            <li class="is-inline-block">
+                <strong><span itemprop="title">{{ menu.titre }}</span></strong>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
+
+
     <div class="section has-background-white-bis ">
         <article class="media has-background-white ">
             <div class="media-left">
                 <figure>
                     <p class="image ">
-                        <img src="{{ asset('images/'~menudetaille.photo) }}" class="is-300x300">
+                        <img src="{{ asset('images/'~menu.photo) }}" class="is-300x300">
                     </p>
                 </figure>
                 <div class="is-flex is-margin-5">
-                    {% if(menudetaille.idPhotos.photo1 is not empty) %}
+                    {% if(menu.idPhotos.photo1 is not empty) %}
                         <figure class="media-left">
                             <p>
-                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo1) }}" class="is-60x60">
+                                <img src="{{ asset('images/'~menu.idPhotos.photo1) }}" class="is-60x60">
                             </p>
                         </figure>
                     {% endif %}
-                    {% if(menudetaille.idPhotos.photo2 is not empty) %}
+                    {% if(menu.idPhotos.photo2 is not empty) %}
                         <figure class="media-left">
                             <p>
-                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo2) }}" class="is-60x60">
+                                <img src="{{ asset('images/'~menu.idPhotos.photo2) }}" class="is-60x60">
                             </p>
                         </figure>
                     {% endif %}
-                    {% if(menudetaille.idPhotos.photo3 is not empty) %}
+                    {% if(menu.idPhotos.photo3 is not empty) %}
                         <figure class="media-left">
                             <p>
-                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo3) }}" class="is-60x60">
+                                <img src="{{ asset('images/'~menu.idPhotos.photo3) }}" class="is-60x60">
                             </p>
                         </figure>
                     {% endif %}
-                    {% if(menudetaille.idPhotos.photo4 is not empty) %}
+                    {% if(menu.idPhotos.photo4 is not empty) %}
                         <figure class="media-left">
                             <p>
-                                <img src="{{ asset('images/'~menudetaille.idPhotos.photo4) }}" class="is-60x60">
+                                <img src="{{ asset('images/'~menu.idPhotos.photo4) }}" class="is-60x60">
                             </p>
                         </figure>
                     {% endif %}
@@ -45,23 +62,23 @@
             </div>
             <div class="media-content ">
                 <div class="content">
-                    <h1> Menu - {{ menudetaille.titre }}</h1>
+                    <h1> Menu - {{ menu.titre }}</h1>
                     <p>
-                        <small>{{ menudetaille.descriptioncourte }}</small>
+                        <small>{{ menu.descriptioncourte }}</small>
                     </p>
                     <hr>
                     <div class="is-center is-flex">
                         <p class="is-centered">
                             <i class="fas fa-user is-size-4	has-text-primary "></i>
                             <br>
-                            <span> {{ menudetaille.nbrpersonnes }} - Pers.</span>
+                            <span> {{ menu.nbrpersonnes }} - Pers.</span>
                         </p>
                         <p class="is-centered">
                             <img class="img-thumbnail is-48x48 is-no-border"
-                                 src="{{ asset('images/'~menudetaille.presentation.image) }}"
+                                 src="{{ asset('images/'~menu.presentation.image) }}"
                                  alt="Image Principale"/>
                             <br>
-                            <span> {{ menudetaille.presentation.nom }} - Pers.</span>
+                            <span> {{ menu.presentation.nom }} - Pers.</span>
                         </p>
 
                     </div>
@@ -86,10 +103,10 @@
 
 
                     <span class="has-text-danger">
-                            <span class="is-size-4"> {{ menudetaille.prixunit*menudetaille.nbrpersonnes }}</span><span
+                            <span class="is-size-4"> {{ menu.prixunit*menu.nbrpersonnes }}</span><span
                                 class="is-size-7">,00&nbsp;€</span>
                         </span><br>
-                    <span class="is-size-8 has-text-grey"> {{ menudetaille.prixunit }},00&nbsp;€ la part</span>
+                    <span class="is-size-8 has-text-grey"> {{ menu.prixunit }},00&nbsp;€ la part</span>
 
 
                 </div>
@@ -102,28 +119,28 @@
         <div class="is-padding-10">
             <h2 class="is-size-4 has-background-info h-details" >Description</h2>
             <p class="is-left is-description p-details">
-                {{ menudetaille.descriptionlongue }}
+                {{ menu.descriptionlongue }}
             </p>
         </div>
         <hr>
         <div>
             <h2 class="is-size-4 has-background-primary h-details">Ingrédients</h2>
             <p class="is-left is-ingredients p-details">
-                {{ menudetaille.ingredients }}
+                {{ menu.ingredients }}
             </p>
         </div>
         <hr>
         <div>
             <h2  class="is-size-4 has-background-success h-details">Suggestions</h2>
             <p class="is-left is-suggestions p-details">
-                {{ menudetaille.suggestions }}
+                {{ menu.suggestions }}
             </p>
         </div>
     </div>
         <hr>
 <div class="section has-text-left has-background-white-bis">
     <h3 class="subtitle has-text-primary has-text-weight-bold">
-        Notes: {{ menudetaille.notes|length }}
+        Notes: {{ menu.notes|length }}
     </h3>
 
     {% include 'includes/flash_message.html.twig' %}
@@ -147,7 +164,7 @@
         </div>
     {% endif %}
 
-    {% for note in menudetaille.notes %}
+    {% for note in menu.notes %}
         {# @var note \App\Entity\Note #}
         <br>
         <div class="card">
@@ -161,7 +178,7 @@
                 <hr>
                 <small>
                     {% if is_granted('NOTE_DELETE', note) %}
-                        <a href="{{ path('menu_detaille_delete_note', {id: note.id}) }}" class="button is-danger is-small">
+                        <a href="{{ path('menu_delete_note', {id: note.id}) }}" class="button is-danger is-small">
                             <i class="far fa-times-circle"></i>&nbsp;
                             Supprimer
                         </a>

@@ -6,7 +6,7 @@ use App\Entity\MenuDetaille;
 use App\Entity\Note;
 use App\Form\NoteFormType;
 use App\Repository\MenuDetailleRepository;
-use App\Repository\MenuRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\NoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -81,13 +81,13 @@ class MenuDetailleController extends AbstractController
      * @Route("/list{id}", name="_list")
      */
     public function MenuDetailleList(Request $request,
-                                     MenuRepository $menuRepository)
+                                     CategoryRepository $categoryRepository)
     {
         $id = $request->get('id');
-        $menu = $menuRepository->findOneBy(["id" => $id]);
+        $category = $categoryRepository->findOneBy(["id" => $id]);
 //dd($id);
         return $this->render('menu_detaille/menudetaille_list.html.twig', [
-            'menu' => $menu,
+            'category' => $category,
 
         ]);
     }

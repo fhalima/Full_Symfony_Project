@@ -5,99 +5,172 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="section">
-        <h2 class="title">
-            Gestion des Menus
-        </h2>
-        <p></p>
+    <div class="container">
+        <div class="section">
+            <h2 class="title is-padding-10 is-margin-0">
+                Gestion des Formules-Menus
+            </h2>
+            <p></p>
 
-        <hr>
-        <h3 class="subtitle">
+            <hr>
+            <h3 class="subtitle">
 
-        </h3>
+            </h3>
+            <div class="is-scrollable">
+                <div class="table-container ">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
+                        <thead>
+                        <tr>
+                            <th>actions</th>
+                            <th>Id menu</th>
+                            <th>titre</th>
+                            <th>description courte</th>
+                            <th>description longue</th>
+                            <th>photo principale</th>
+                            <th>Nbr de Personnes</th>
+                            <th>Durée de Préparation</th>
+                            <th>Prix-Unit</th>
+                            <th>Temp-min°</th>
+                            <th>Temp-max°</th>
+                            <th>Présentation</th>
+                            <th>Ingrédients</th>
+                            <th>Suggestion</th>
+                            <th>date d'enregistrement</th>
 
-        <div class="table-container is-scrollable">
-            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
-                <thead>
-                <tr>
-                    <th>Id menu</th>
-                    <th> titre</th>
-                    <th>description courte</th>
-                    <th>description longue</th>
-                    <th>photo principale</th>
-                    <th>date d'enregistrement</th>
-                    <th>actions</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                {% for menu in menuList %}
-                    <tr>
-                        <th>{{ menu.id }}</th>
-                        <td>{{ menu.titre }}</td>
-                        <td>{{ menu.descriptionCourte }}</td>
-                        <td>{{ menu.descriptionLongue }}</td>
-                        <td>{{ menu.photo }}</td>
-                        <td>{{ menu.dateenregistrement|date('d/m/Y') }}</td>
-                        <td>
-                            <small> <a href="{{ path('admin_menu',{id:menu.id }) }}"> <i class="fas fa-search"></i>
-                                </a></small>
-                            <small > <a  href="{{ path('admin_menu_update',{id: menu.id}) }}"> <i class="far fa-edit"></i>
-                                </a></small>
-                            <small> <a href="{{ path('admin_menu_delete',{id: menu.id}) }}"> <i
-                                            class="far fa-trash-alt"></i> </a></small>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <hr>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for menudetaille in menudetailleList %}
+                            <tr>
+                                <th class="action">
+                                    <small> <a href="{{ path('menu_detaille_page',{id:menudetaille.id }) }}"> <i
+                                                    class="fas fa-search"></i>
+                                        </a></small>
+                                    <small> <a href="{{ path('admin_menudetaille_update',{id: menudetaille.id}) }}#form_anchor"> <i
+                                                    class="far fa-edit"></i>
+                                        </a></small>
+                                    <small> <a href="{{ path('admin_menudetaille_delete',{id: menudetaille.id}) }}#form_anchor"> <i
+                                                    class="far fa-trash-alt"></i> </a></small>
+                                </th>
+                                <th>{{ menudetaille.id }}</th>
+                                <td>{{ menudetaille.titre }}</td>
+                                <td>{{ menudetaille.descriptionCourte }}</td>
+                                <td>{{ menudetaille.descriptionLongue }}</td>
+                                <td>{{ menudetaille.photo }}
+                                    {#                            <div>#}
+                                    {#                                <img class="img-thumbnail is-150x150" id="image-detaille-P" src= "{{ asset(menudetaille.photo) }}"#}
+                                    {#                                     alt="Image Principale"/> #}{# {{  asset('images/'~menudetaille_form.photo.vars.value) }}#}
+                                    {#                            </div>#}
+                                </td>
+                                <td>{{ menudetaille.nbrPersonnes }}</td>
+                                <td>{{ menudetaille.dureePrepare }}</td>
+                                <td>{{ menudetaille.prixUnit }}</td>
+                                <td>{{ menudetaille.temperatureMin }}</td>
+                                <td>{{ menudetaille.temperatureMax }}</td>
+                                <td>{{ menudetaille.presentation.nom }}</td>
+                                <td>{{ menudetaille.ingredients }}</td>
+                                <td>{{ menudetaille.suggestions }}</td>
+                                <td>{{ menudetaille.dateenregistrement|date('d/m/Y') }}</td>
 
-        {% include '/includes/flash_message.html.twig' %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr>
 
-        <div class="form_container columns " >
-            <div class="column is-half">
-                {{ form_start(menu_form) }}
+            {% include '/includes/flash_message.html.twig' %}
 
-                {#                {{ form_row(user_form.id , {label: 'Id utilisateur', value: user_curr.id}) }}#}
-                {{ form_row(menu_form.titre, {label: 'Titre', value: menu_curr.titre}) }}
-                {{ form_row(menu_form.description_courte, {label: 'Description courte', value: menu_curr.descriptionCourte}) }}
-                {{ form_row(menu_form.description_longue, {label: 'description longue', value: menu_curr.descriptionLongue}) }}
+            <div class="form_container columns is-left" id="form_anchor">
+                <div class="column is-half ">
+                    {{ form_start(menudetaille_form) }}
+
+                    {#                {{ form_row(user_form.id , {label: 'Id utilisateur', value: user_curr.id}) }}#}
+                    {{ form_row(menudetaille_form.titre, {label: 'Titre', value: menudetaille_curr.titre}) }}
+                    {{ form_row(menudetaille_form.description_courte, {label: 'Description courte', value: menudetaille_curr.descriptionCourte}) }}
+                    {{ form_row(menudetaille_form.description_longue, {label: 'description longue', value: menudetaille_curr.descriptionLongue}) }}
+                    {{ form_row(menudetaille_form.Nbr_Personnes, {label: 'Nombre de Personnes', value: menudetaille_curr.nbrPersonnes}) }}
+                    {{ form_row(menudetaille_form.duree_prepare, {label: 'Durée de préparation', value: menudetaille_curr.dureePrepare}) }}
+                    {{ form_row(menudetaille_form.prix_unit, {label: 'Prix Unitaire', value: menudetaille_curr.prixUnit}) }}
+                    {{ form_row(menudetaille_form.photo , {label: 'Photo Principale', 'attr':{'value': menudetaille_curr.photo}} ) }}
+                    {#               #}
+
+
+                </div>
+
+                <div class="column is-half">
+
+
+                    {{ form_row(menudetaille_form.temperature_min, {label: 'Température Minimale', value: menudetaille_curr.temperatureMin}) }}
+                    {{ form_row(menudetaille_form.temperature_max, {label: 'Température Maximale', value: menudetaille_curr.temperatureMax}) }}
+                    {{ form_row(menudetaille_form.presentation, {label: 'Type de Présentation', value: menudetaille_curr.presentation.nom}) }}
+                    {{ form_row(menudetaille_form.ingredients, {label: 'Ingrédients', value: menudetaille_curr.ingredients}) }}
+                    {{ form_row(menudetaille_form.suggestions, {label: 'Suggestions', value: menudetaille_curr.suggestions}) }}
+                    <div>
+                        <img class="img-thumbnail is-150x150" id="image-detaille-P"
+                             src="{{ asset('images/menu-vide-2.jpg') }}"
+                             alt="Image Principale"/> {# {{  asset('images/'~menudetaille_form.photo.vars.value) }}#}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form_container columns is-left ">
+                <div class="column is-half is-border-right">
+                    <div class="is-flex">
+                        {{ form_row(menudetaille_form.photo1, {label: 'Image 1','attr':{'value': menudetaille_curr.idPhotos.photo1}}) }}
+                        <div>
+                            <img class="img-thumbnail is-60x60" id="image1" src="{{ asset('images/menu-vide-1.jpg') }}"
+                                 alt="Image Principale"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="is-flex">
+                        {{ form_row(menudetaille_form.photo2, {label: 'Image 2','attr':{'value': menudetaille_curr.idPhotos.photo2}}) }}
+                        <div>
+                            <img class="img-thumbnail is-60x60" id="image2" src="{{ asset('images/menu-vide-3.jpg') }}"
+                                 alt="Image Principale"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-half">
+                    <div class="is-flex">
+                        {{ form_row(menudetaille_form.photo3, {label: 'Image 3','attr':{'value': menudetaille_curr.idPhotos.photo3}}) }}
+                        <div>
+                            <img class="img-thumbnail is-60x60" id="image3" src="{{ asset('images/menu-vide-4.jpg') }}"
+                                 alt="Image Principale"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="is-flex">
+                        {{ form_row(menudetaille_form.photo4, {label: 'Image 4','attr':{'value': menudetaille_curr.idPhotos.photo4}}) }}
+                        <div>
+                            <img class="img-thumbnail is-60x60" id="image4" src="{{ asset('images/menu-vide-5.jpg') }}"
+                                 alt="Image Principale"/>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
             </div>
-
-            <div class="column is-half">
-{#                            <label class="label" for="imgInp">Image Principale</label>#}
-{#                            <div class="input-group mb-3">#}
-{#                                <div class="input-group-prepend">#}
-{#                                    <span class="input-group-text">Image</span>#}
-{#                                </div>#}
-{#                                <div class="custom-file ">#}
-                {{ form_row(menu_form.photo, {'attr': {label : menu_curr.photo} }) }}
-{#                                    {% if(menu_form.photo.vars.va:lue) %}#}
-{#                                    <label class="custom-file-label" id="imgInp-label" for="photo">menu_form.photo.vars.value</label>#}
-{#                                    {% else %}#}
-{#                                    <label class="custom-file-label" id="imgInp-label" for="photo">Choisir un fichier</label>#}
-{#                                    {% endif %}#}
-{#                                </div>#}
-{#                            </div>#}
-                <div>
-                    <img class="img-thumbnail is-150x150" id="image-P" src="{{ asset('images/menu-vide-2.jpg') }}"
-                         alt="Image Principale"/>
-                </div>
-{#                {{ menu_form.photo.vars.id }}#}
-
-                        <br>
             <button class="button is-primary is-center" type="submit" id="submit" name="submit">
-                {{ menu_button }}
+                {{ menudetaille_button }}
             </button>
 
-            {{ form_end(menu_form)}}
-
+            {{ form_end(menudetaille_form) }}
         </div>
     </div>
-    </div>
-
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
