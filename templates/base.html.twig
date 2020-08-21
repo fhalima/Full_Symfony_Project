@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="SUCCULENCE TRAITEUR le meilleur traiteur gastronomique français-oriental à
+     Villetaneuse, pour vos évènements et fêtes, avec ses recettes traditionnelles succulente et fraiches vous fera
+     vivre un voyage culinaire inoubliable.">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.ico') }}" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{asset('images/logo-traiteur.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo-traiteur.ico') }}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="/node_modules/bulma-carousel/dist/js/bulma-carousel.js" rel="stylesheet">
 {#    <title>Hello Bulma!</title>#}
@@ -15,7 +18,7 @@
 
     {#    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
 
-    <title>{% block title'Bienvenue' %}|SUCCULENCE TRAITEUR< </title>
+    <title>{% block title'Bienvenue' %}|SUCCULENCE TRAITEUR</title>
     {% block css  %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -32,7 +35,9 @@
 
 
 
-
+{% include 'COOKIES_MESSAGE.twig' %}
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -3,8 +3,9 @@
     Profile
 {% endblock %}
 {% block content %}
-    <section class="section has-background-white-ter">
-        <h3>
+    <div class="columns section is-centered has-background-white-ter box">
+        <div class="column is-one-third box">
+        <h3></h3>
             {% include 'includes/flash_message.html.twig'%}
 
             {{ form_start(profile_form) }}
@@ -22,8 +23,8 @@
 
             {{ form_end(profile_form) }}
 
+</div>
 
-        </h3>
-    </section>
+    </div>
 
 {% endblock %}

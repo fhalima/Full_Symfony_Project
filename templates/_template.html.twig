@@ -4,10 +4,11 @@
 {#écraser le contenu du bloc "body"
 défini dans le template parent#}
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-        <a class="navbar-brand" href="{{ path('home') }}">
-            <img src="{{ asset('images/logo-traiteur.png') }}" class="logo"
-                 alt="Succulence: Le meilleur traiteur oriental - Villetaneuse - France" width="150" height="60">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark is-padding-5">
+        <a class="navbar-brand is-padding-0 " href="{{ path('home') }}">
+            <img src="{{ asset('images/logo-traiteur-tsp.png') }}" class="logo"
+                 alt="Succulence: Le meilleur traiteur oriental - Villetaneuse - France" width="58px !important"
+                 height="70px !important">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,52 +17,62 @@ défini dans le template parent#}
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('home') }}">
-                        Accueil
-                        {#                        <span class="sr-only">(current)</span>#}
-                    </a>
-                </li>
+                {#                <li class="nav-item active">#}
+                {#                    <a class="nav-link" href="{{ path('home') }}">#}
+                {#                        Accueil#}
+                {#                        #}{#                        <span class="sr-only">(current)</span>#}
+                {#                    </a>#}
+                {#                </li>#}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path("qsn") }}">
+                    <a class="nav-link glow text-white" href="{{ path("qsn") }}">
                         Qui sommes nous?
                     </a>
                 </li>
                 {#                <li class="nav-item">#}
                 {#                    <a class="nav-link" href="#">Link</a>#}
                 {#                </li>#}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle is-or text-white" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nos menus et buffets
+                        Nos menus
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">menu 1</a>
-                        <a class="dropdown-item" href="#">menu 2</a>
-                        <a class="dropdown-item" href="#">menu 3</a>
+                        <a class="dropdown-item" href="#">Apéritifs</a>
+                        <a class="dropdown-item" href="#">Entrées & Salades</a>
+                        <a class="dropdown-item" href="#">
+                            <img src="{{ asset('images/tajine.png') }}" class="tajine"
+                                 alt="Succulence: Le meilleur traiteur oriental - Villetaneuse - France" width="20"
+                                 height="20">
+                            Tajines - Assiettes </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Menu enf{#s#}ant</a>
+                        <a class="dropdown-item" href="#">Menu végétarien</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nos buffets
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Buffet Froid</a>
+                        <a class="dropdown-item" href="#">Buffet chaud</a>
+                        <a class="dropdown-item" href="#">Buffet composé</a>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Les grandes occasions
+                        Les évenements
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="navbar-item" href="#">
-                            Mariage
-                        </a>
-                        <a class="navbar-item" href="#">
-                            batême
-                        </a>
-                        <a class="navbar-item" href="#">
-                            Pondesant de cremaillere
-                        </a>
-                        <a class="navbar-item" href="#">
-                            reception en entreprise
-                        </a>
+                        <a class="dropdown-item" href="#">
+
+                            Mariage </a>
+                        <a class="dropdown-item" href="#"> Baptême </a>
+                        <a class="dropdown-item" href="#">Pendaisant de crémaillère </a>
+                        <a class="dropdown-item" href="#"> Réception en entreprise </a>
 
                     </div>
                 </li>
@@ -71,17 +82,17 @@ défini dans le template parent#}
                 {#                    <a class="nav-link disabled" href="#">Disabled</a>#}
                 {#                </li>#}
 
-                <il>
+                <li class="nav-item">
                     {% if app.user %}
-                        <a class="nav-link" href="{{ path('user_contact', {id:app.user.id}) }}">
+                        <a class="nav-link text-white" href="{{ path('user_contact', {id:app.user.id}) }}">
                             Contact
                         </a>
                     {% else %}
-                        <a class="nav-link" href="{{ path('contact') }}">
+                        <a class="nav-link text-white" href="{{ path('contact') }}">
                             Contact
                         </a>
                     {% endif %}
-                </il>
+                </li>
             </ul>
 
             <div class="navbar-end ">
@@ -89,7 +100,7 @@ défini dans le template parent#}
                     <div class="field is-grouped">
                         {% if is_granted('ROLE_USER') %}
                             <p class="control">
-                                <a class="button is-size-7" target="_blank"
+                                <a class="button is-size-7 has-text-primary" target="_blank"
                                    href="{{ path('user_profile') }}">{# {{ path('user') }}#}
                                     <span class="icon">
                                     <i class="fas fa-user"></i>
@@ -100,7 +111,7 @@ défini dans le template parent#}
                                 </a>
                             </p>
                             <p class="control">
-                                <a class="button is-size-7 is-primary"
+                                <a class="button is-size-7 bg-dark has-text-primary"
                                    href="{{ path('app_logout') }}">
                                   <span class="icon">
                                    <i class="fas fa-sign-out-alt"></i>
@@ -147,10 +158,10 @@ défini dans le template parent#}
             </div>
 
 
-{#            <form class="form-inline my-2 my-lg-0">#}
-{#                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
-{#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
-{#            </form>#}
+            {#            <form class="form-inline my-2 my-lg-0">#}
+            {#                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
+            {#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+            {#            </form>#}
         </div>
     </nav>
 
@@ -158,153 +169,153 @@ défini dans le template parent#}
 
 
 
-{#    <nav class="navbar" role="navigation" aria-label="main navigation">#}
-{#        <div class="navbar-brand">#}
-{#            <a class="navbar-item" href="{{ path('home') }}">#}
-{#                <img src="{{ asset('images/logo-traiteur.png') }}" class="logo"#}
-{#                     alt="Succulence: Le meilleur traiteur oriental - Villetaneuse - France" width="150" height="60">#}
-{#            </a>#}
-{#            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"#}
-{#               data-target="navbarBasicExample">#}
-{#                <span aria-hidden="true"></span>#}
-{#                <span aria-hidden="true"></span>#}
-{#                <span aria-hidden="true"></span>#}
-{#            </a>#}
-{#        </div>#}
+    {#    <nav class="navbar" role="navigation" aria-label="main navigation">#}
+    {#        <div class="navbar-brand">#}
+    {#            <a class="navbar-item" href="{{ path('home') }}">#}
+    {#                <img src="{{ asset('images/logo-traiteur.png') }}" class="logo"#}
+    {#                     alt="Succulence: Le meilleur traiteur oriental - Villetaneuse - France" width="150" height="60">#}
+    {#            </a>#}
+    {#            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"#}
+    {#               data-target="navbarBasicExample">#}
+    {#                <span aria-hidden="true"></span>#}
+    {#                <span aria-hidden="true"></span>#}
+    {#                <span aria-hidden="true"></span>#}
+    {#            </a>#}
+    {#        </div>#}
 
-{#        <div id="navbarBasicExample" class="navbar-menu">#}
-{#            <div class="navbar-start">#}
-{#                <a class="navbar-item" href="{{ path('home') }}">#}
-{#                    Accueil#}
-{#                </a>#}
-{#                <a class="navbar-item" href="{{ path("qsn") }}">#}
-{#                    Qui sommes nous?#}
-{#                </a>#}
-{#                <div class="navbar-item has-dropdown  is-hoverable">#}
-{#                    <a class="navbar-link " href="/documentation/overview/start/">#}
-{#                        Nos menus et buffets#}
-{#                    </a>#}
-{#                    <div class="navbar-dropdown is-boxed">#}
-{#                        <a class="navbar-item" href="/documentation/overview/start/">#}
-{#                            menu 1#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/modifiers/syntax/">#}
-{#                            menu 2#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/columns/basics/">#}
-{#                            menu 3#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/layout/container/">#}
-{#                            menu 4#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/form/general/">#}
-{#                            Form#}
-{#                        </a>#}
-{#                        #}{#                        <hr class="navbar-divider">#}
-{#                        #}{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/elements/box/">#}
-{#                        #}{#                            Elements#}
-{#                        #}{#                        </a>#}
-{#                        #}{#                        <a class="navbar-item is-active"#}
-{#                        #}{#                           href="https://versions.bulma.io/0.7.0/documentation/components/breadcrumb/">#}
-{#                        #}{#                            Components#}
-{#                        #}{#                        </a>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="navbar-item has-dropdown is-hoverable">#}
-{#                    <a class="navbar-link" href="/documentation/overview/start/">#}
-{#                        Les grandes occasions#}
-{#                    </a>#}
-{#                    <div class="navbar-dropdown is-boxed">#}
-{#                        <a class="navbar-item" href="/documentation/overview/start/">#}
-{#                            Mariage#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/modifiers/syntax/">#}
-{#                            batême#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/columns/basics/">#}
-{#                            Pondesant de cremaillere#}
-{#                        </a>#}
-{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/layout/container/">#}
-{#                            reception en entreprise 4#}
-{#                        </a>#}
+    {#        <div id="navbarBasicExample" class="navbar-menu">#}
+    {#            <div class="navbar-start">#}
+    {#                <a class="navbar-item" href="{{ path('home') }}">#}
+    {#                    Accueil#}
+    {#                </a>#}
+    {#                <a class="navbar-item" href="{{ path("qsn") }}">#}
+    {#                    Qui sommes nous?#}
+    {#                </a>#}
+    {#                <div class="navbar-item has-dropdown  is-hoverable">#}
+    {#                    <a class="navbar-link " href="/documentation/overview/start/">#}
+    {#                        Nos menus et buffets#}
+    {#                    </a>#}
+    {#                    <div class="navbar-dropdown is-boxed">#}
+    {#                        <a class="navbar-item" href="/documentation/overview/start/">#}
+    {#                            menu 1#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/modifiers/syntax/">#}
+    {#                            menu 2#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/columns/basics/">#}
+    {#                            menu 3#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/layout/container/">#}
+    {#                            menu 4#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/form/general/">#}
+    {#                            Form#}
+    {#                        </a>#}
+    {#                        #}{#                        <hr class="navbar-divider">#}
+    {#                        #}{#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/elements/box/">#}
+    {#                        #}{#                            Elements#}
+    {#                        #}{#                        </a>#}
+    {#                        #}{#                        <a class="navbar-item is-active"#}
+    {#                        #}{#                           href="https://versions.bulma.io/0.7.0/documentation/components/breadcrumb/">#}
+    {#                        #}{#                            Components#}
+    {#                        #}{#                        </a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="navbar-item has-dropdown is-hoverable">#}
+    {#                    <a class="navbar-link" href="/documentation/overview/start/">#}
+    {#                        Les grandes occasions#}
+    {#                    </a>#}
+    {#                    <div class="navbar-dropdown is-boxed">#}
+    {#                        <a class="navbar-item" href="/documentation/overview/start/">#}
+    {#                            Mariage#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/modifiers/syntax/">#}
+    {#                            batême#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/columns/basics/">#}
+    {#                            Pondesant de cremaillere#}
+    {#                        </a>#}
+    {#                        <a class="navbar-item" href="https://versions.bulma.io/0.7.0/documentation/layout/container/">#}
+    {#                            reception en entreprise 4#}
+    {#                        </a>#}
 
-{#                    </div>#}
-{#                </div>#}
-{#                {% if app.user %}#}
-{#                    <a class="navbar-item" href="{{ path('user-contact', {id:app.user.id}) }}">#}
-{#                        Contact#}
-{#                    </a>#}
-{#                {% else %}#}
-{#                    <a class="navbar-item" href="{{ path('contact') }}">#}
-{#                        Contact#}
-{#                    </a>#}
-{#                {% endif %}#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                {% if app.user %}#}
+    {#                    <a class="navbar-item" href="{{ path('user-contact', {id:app.user.id}) }}">#}
+    {#                        Contact#}
+    {#                    </a>#}
+    {#                {% else %}#}
+    {#                    <a class="navbar-item" href="{{ path('contact') }}">#}
+    {#                        Contact#}
+    {#                    </a>#}
+    {#                {% endif %}#}
 
-{#            </div>#}
+    {#            </div>#}
 
-{#            <div class="navbar-end ">#}
-{#                <div class="navbar-item">#}
-{#                    <div class="field is-grouped">#}
-{#                        {% if is_granted('ROLE_USER') %}#}
-{#                            <p class="control">#}
-{#                                <a class="button is-size-7" target="_blank"#}
-{#                                   href="{{ path('user_profile') }}">#}{# {{ path('user') }}#}
-{#                                    <span class="icon">#}
-{#                                    <i class="fas fa-user"></i>#}
-{#                                  </span>#}
-{#                                    <span>#}
-{#                                   {{ app.user.pseudo }}#}
-{#                                  </span>#}
-{#                                </a>#}
-{#                            </p>#}
-{#                            <p class="control">#}
-{#                                <a class="button is-size-7 is-primary"#}
-{#                                   href="{{ path('app_logout') }}">#}
-{#                                  <span class="icon">#}
-{#                                   <i class="fas fa-sign-out-alt"></i>#}
-{#                                  </span>#}
-{#                                    <span>Déconnexion</span>#}
-{#                                </a>#}
-{#                            </p>#}
-{#                        {% else %}#}
-{#                            <p class="control">#}
-{#                                <a class="button is-size-7" target="_blank"#}
-{#                                   href="{{ path('app_login') }}">#}{# {{ path('user') }}#}
-{#                                    <span class="icon">#}
-{#                                    <i class="fas fa-user"></i>#}
-{#                                  </span>#}
-{#                                    <span>#}
-{#                                   Espace membre#}
-{#                                  </span>#}
-{#                                </a>#}
-{#                            </p>#}
-{#                            <p class="control">#}
-{#                                <a class="button is-size-7 is-primary"#}
-{#                                   href="{{ path('user_registration') }}">#}
-{#                                  <span class="icon">#}
-{#                                   <i class="fas fa-address-card"></i>#}
-{#                                  </span>#}
-{#                                    <span>Inscription</span>#}
-{#                                </a>#}
-{#                            </p>#}
-{#                        {% endif %}#}
-{#                        {% if(is_granted('ROLE_ADMIN')) %}#}
-{#                            <p class="control">#}
-{#                                <a class="button is-size-7 is-primary"#}
-{#                                   href="{{ path('admin_dashboard') }}">#}
-{#                                  <span class="icon">#}
-{#                                   <i class="fas fa-shield-alt"></i>#}
-{#                                  </span>#}
-{#                                    <span>Back Office</span>#}
-{#                                </a>#}
-{#                            </p>#}
+    {#            <div class="navbar-end ">#}
+    {#                <div class="navbar-item">#}
+    {#                    <div class="field is-grouped">#}
+    {#                        {% if is_granted('ROLE_USER') %}#}
+    {#                            <p class="control">#}
+    {#                                <a class="button is-size-7" target="_blank"#}
+    {#                                   href="{{ path('user_profile') }}">#}{# {{ path('user') }}#}
+    {#                                    <span class="icon">#}
+    {#                                    <i class="fas fa-user"></i>#}
+    {#                                  </span>#}
+    {#                                    <span>#}
+    {#                                   {{ app.user.pseudo }}#}
+    {#                                  </span>#}
+    {#                                </a>#}
+    {#                            </p>#}
+    {#                            <p class="control">#}
+    {#                                <a class="button is-size-7 is-primary"#}
+    {#                                   href="{{ path('app_logout') }}">#}
+    {#                                  <span class="icon">#}
+    {#                                   <i class="fas fa-sign-out-alt"></i>#}
+    {#                                  </span>#}
+    {#                                    <span>Déconnexion</span>#}
+    {#                                </a>#}
+    {#                            </p>#}
+    {#                        {% else %}#}
+    {#                            <p class="control">#}
+    {#                                <a class="button is-size-7" target="_blank"#}
+    {#                                   href="{{ path('app_login') }}">#}{# {{ path('user') }}#}
+    {#                                    <span class="icon">#}
+    {#                                    <i class="fas fa-user"></i>#}
+    {#                                  </span>#}
+    {#                                    <span>#}
+    {#                                   Espace membre#}
+    {#                                  </span>#}
+    {#                                </a>#}
+    {#                            </p>#}
+    {#                            <p class="control">#}
+    {#                                <a class="button is-size-7 is-primary"#}
+    {#                                   href="{{ path('user_registration') }}">#}
+    {#                                  <span class="icon">#}
+    {#                                   <i class="fas fa-address-card"></i>#}
+    {#                                  </span>#}
+    {#                                    <span>Inscription</span>#}
+    {#                                </a>#}
+    {#                            </p>#}
+    {#                        {% endif %}#}
+    {#                        {% if(is_granted('ROLE_ADMIN')) %}#}
+    {#                            <p class="control">#}
+    {#                                <a class="button is-size-7 is-primary"#}
+    {#                                   href="{{ path('admin_dashboard') }}">#}
+    {#                                  <span class="icon">#}
+    {#                                   <i class="fas fa-shield-alt"></i>#}
+    {#                                  </span>#}
+    {#                                    <span>Back Office</span>#}
+    {#                                </a>#}
+    {#                            </p>#}
 
-{#                        {% endif %}#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </nav>#}
+    {#                        {% endif %}#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </nav>#}
     {% block content %}
 
     {% endblock %}

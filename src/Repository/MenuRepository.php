@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\MenuDetaille;
+use App\Entity\Menu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method MenuDetaille|null find($id, $lockMode = null, $lockVersion = null)
- * @method MenuDetaille|null findOneBy(array $criteria, array $orderBy = null)
- * @method MenuDetaille[]    findAll()
- * @method MenuDetaille[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Menu|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Menu|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Menu[]    findAll()
+ * @method Menu[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MenuDetailleRepository extends ServiceEntityRepository
+class MenuRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, MenuDetaille::class);
+        parent::__construct($registry, Menu::class);
     }
 
     // /**
-    //  * @return MenuDetaille[] Returns an array of MenuDetaille objects
+    //  * @return Menu[] Returns an array of Menu objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MenuDetailleRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?MenuDetaille
+    public function findOneBySomeField($value): ?Menu
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

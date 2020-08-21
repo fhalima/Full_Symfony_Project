@@ -8,13 +8,14 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.css';
 require('jquery');
+
 // const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 
 // or you can include specific pieces
-// require('bootstrap/js/dist/tooltip');
-// require('bootstrap/js/dist/popover');
+require('bootstrap/js/dist/tooltip');
+require('bootstrap/js/dist/popover');
 // import './ConsentCookies.js'
 // import './ConsentCookies-2.js'
 // import './fullpage.js'
@@ -27,19 +28,25 @@ require('jquery');
 
 $(document).ready(function () {
 
-    // if( $("#menu_detaille_form_photo").parent('.custom-file').find('.custom-file-label').text() !== "Choisir une image")
-    if ($("#menu_detaille_form_photo").attr('value') !== "") {
-        let value = $("#menu_detaille_form_photo").attr('value');
-        $("#image-detaille-P").attr('src', "/images/" + value);
-        $("#menu_detaille_form_photo").parent('.custom-file').find('.custom-file-label').text(value);
+    if ($("#category_form_photo").attr('value') !== "") {
+        let value = $("#category_form_photo").attr('value');
+        $("#category-P").attr('src', "/images/" + value);
+        $("#category_form_photo").parent('.custom-file').find('.custom-file-label').text(value);
+    }
+
+    // if( $("#menu_form_photo").parent('.custom-file').find('.custom-file-label').text() !== "Choisir une image")
+    if ($("#menu_form_photo").attr('value') !== "") {
+        let value = $("#menu_form_photo").attr('value');
+        $("#image-P").attr('src', "/images/" + value);
+        $("#menu_form_photo").parent('.custom-file').find('.custom-file-label').text(value);
     }
 
 
     for (let i = 1; i <= 4; i++)
-        if ($("#menu_detaille_form_photo" + i).attr('value') !== "") {
-            let value = $("#menu_detaille_form_photo" + i).attr('value');
+        if ($("#menu_form_photo" + i).attr('value') !== "") {
+            let value = $("#menu_form_photo" + i).attr('value');
             $("#image" + i).attr('src', "/images/" + value);
-            $("#menu_detaille_form_photo" + i).parent('.custom-file').find('.custom-file-label').text(value);
+            $("#menu_form_photo" + i).parent('.custom-file').find('.custom-file-label').text(value);
         }
 
 
@@ -81,6 +88,18 @@ $( window ).on('resize',function() {
 // }
 
 
+$("#category_form_photo").change(function (e) {
+     if (this.files && this.files[0]) {
+        let files = this.files;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#category-P').attr('src', e.target.result);
+            $("#category_form_photo").parent('.custom-file').find('.custom-file-label').text(files[0].name);
+        }
+        reader.readAsDataURL(this.files[0]);
+    }
+});
+
 $("#menu_form_photo").change(function (e) {
     if (this.files && this.files[0]) {
         let files = this.files;
@@ -92,59 +111,47 @@ $("#menu_form_photo").change(function (e) {
         reader.readAsDataURL(this.files[0]);
     }
 });
-
-$("#menu_detaille_form_photo").change(function (e) {
-    if (this.files && this.files[0]) {
-        let files = this.files;
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#image-detaille-P').attr('src', e.target.result);
-            $("#menu_detaille_form_photo").parent('.custom-file').find('.custom-file-label').text(files[0].name);
-        }
-        reader.readAsDataURL(this.files[0]);
-    }
-});
-$("#menu_detaille_form_photo2").change(function (e) {
+$("#menu_form_photo2").change(function (e) {
     if (this.files && this.files[0]) {
         let files = this.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#image2').attr('src', e.target.result);
-            $("#menu_detaille_form_photo2").parent('.custom-file').find('.custom-file-label').text(files[0].name);
+            $("#menu_form_photo2").parent('.custom-file').find('.custom-file-label').text(files[0].name);
         }
         reader.readAsDataURL(this.files[0]);
     }
 });
-$("#menu_detaille_form_photo3").change(function (e) {
-    // readURL("menu_detaille_form_photo2", "image2");
+$("#menu_form_photo3").change(function (e) {
+    // readURL("menu_form_photo2", "image2");
     if (this.files && this.files[0]) {
         let files = this.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#image3').attr('src', e.target.result);
-            $("#menu_detaille_form_photo3").parent('.custom-file').find('.custom-file-label').text(files[0].name);
+            $("#menu_form_photo3").parent('.custom-file').find('.custom-file-label').text(files[0].name);
         }
         reader.readAsDataURL(this.files[0]);
     }
 });
-$("#menu_detaille_form_photo1").change(function (e) {
+$("#menu_form_photo1").change(function (e) {
     if (this.files && this.files[0]) {
         let files = this.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#image1').attr('src', e.target.result);
-            $("#menu_detaille_form_photo1").parent('.custom-file').find('.custom-file-label').text(files[0].name);
+            $("#menu_form_photo1").parent('.custom-file').find('.custom-file-label').text(files[0].name);
         }
         reader.readAsDataURL(this.files[0]);
     }
 });
-$("#menu_detaille_form_photo4").change(function (e) {
+$("#menu_form_photo4").change(function (e) {
     if (this.files && this.files[0]) {
         let files = this.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#image4').attr('src', e.target.result);
-            $("#menu_detaille_form_photo4").parent('.custom-file').find('.custom-file-label').text(files[0].name);
+            $("#menu_form_photo4").parent('.custom-file').find('.custom-file-label').text(files[0].name);
         }
         reader.readAsDataURL(this.files[0]);
     }

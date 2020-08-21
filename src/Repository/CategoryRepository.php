@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Menu;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Menu|null find($id, $lockMode = null, $lockVersion = null)
- * @method Menu|null findOneBy(array $criteria, array $orderBy = null)
- * @method Menu[]    findAll()
- * @method Menu[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Category|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Category|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Category[]    findAll()
+ * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MenuRepository extends ServiceEntityRepository
+class CategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Menu::class);
+        parent::__construct($registry, Category::class);
     }
 
     // /**
-    //  * @return Menu[] Returns an array of Menu objects
+    //  * @return Category[] Returns an array of Category objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MenuRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Menu
+    public function findOneBySomeField($value): ?Category
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
@@ -47,4 +47,12 @@ class MenuRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function SelectCategoryTitles(array $categories)
+    {
+        $titles = [];
+        foreach ($categories as $categorie) {
+            $titles[$categorie->getId()] = $categorie->getTitre();
+        }
+        return $titles;
+    }
 }

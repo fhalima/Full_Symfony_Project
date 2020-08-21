@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactFormType;
 use App\Form\UserContactFormType;
-use App\Repository\MenuRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,44 +17,40 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(MenuRepository $menuRepository)
+    public function index(CategoryRepository $categoryRepository)
     {
-        $menuList=$menuRepository->findAll();
+        $categoryList=$categoryRepository->findAll();
 
-//dd($menuList);
         return $this->render('home.html.twig', [
-            'menuList' => $menuList,
+            'categoryList' => $categoryList,
         ]);
     }
 
     /**
-     * @Route("/menus", name="menus")
+     * @Route("/category", name="categories")
      */
-    public function Menus(MenuRepository $menuRepository)
+    public function Category(CategoryRepository $categoryRepository)
     {
-        $menuList=$menuRepository->findAll();
+        $categoryList=$categoryRepository->findAll();
 
-        return $this->render('includes/menu_list.html.twig', [
-            'menuList' => $menuList,
+        return $this->render('category/category_list.html.twig', [
+            'categoryList' => $categoryList,
         ]);
     }
 
     /**
      * @Route("/cgv", name="cgv")
      */
-    public function CGV(MenuRepository $menuRepository)
+    public function CGV(CategoryRepository $categoryRepository)
     {
-        $menuList=$menuRepository->findAll();
-
         return $this->render('includes/cgv.html.twig');
     }
 
     /**
      * @Route("/qsn", name="qsn")
      */
-    public function QSN(MenuRepository $menuRepository)
+    public function QSN()
     {
-        $menuList=$menuRepository->findAll();
         return $this->render('includes/cgv.html.twig');
     }
 

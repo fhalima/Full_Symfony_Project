@@ -18,7 +18,7 @@ class DashboardNoteFormType extends AbstractType
         $builder
             ->add('user', TextType::class, [
                 'mapped' => false])
-            ->add('menudetaille', TextType::class, [
+            ->add('menu', TextType::class, [
                 'mapped' => false])
             ->add('comment', TextareaType::class)
             ->add('value', TextType::class)

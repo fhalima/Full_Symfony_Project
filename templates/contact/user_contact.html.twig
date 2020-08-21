@@ -8,17 +8,37 @@
 
 
     {% include '/includes/flash_message.html.twig' %}
-    <div class="container section">
-        <div class="form_container has-text-left">
+
+    <div class="columns is-centered container section">
+
+
+
+
+        <div class="column is-two-thirds ">
+            <h2 class="title has-text-primary has-text-centered">Adresse</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20958.35600261324!2d2.3265918867724342!3d48.957398725007124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6691385571dad%3A0x7a8d68a0877a83f9!2sVilletaneuse!5e0!3m2!1sfr!2sfr!4v1583263900396!5m2!1sfr!2sfr"
+                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            <h3>Villetaneuse 93430, France.</h3>
+
+        </div>
+        <div class="column is-one-third form_container box has-text-left has-text-white has-background-black-ter">
 
             {{ form_start(contact_form) }}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
 
-            {{ form_row(contact_form.objet, {label: 'Objet' }) }}
+
+{#                {{ form_row(contact_form.objet, {label: 'Objet' }) }}#}
+                {{ form_row(contact_form.objet) }}
+        </div>
+    </div>
+
             {{ form_row(contact_form.message, {label: 'Message','attr': {'class' : 'textarea'} }) }}
 
 
             <br>
-            <button class="button is-primary is-center" type="submit" id="submit" name="submit">
+            <button class="button is-primary is-center is-fullwidth is-fixed-bottom" type="submit" id="submit" name="submit">
                 Envoyer
             </button>
 
@@ -26,18 +46,10 @@
 
 
         </div>
-
     </div>
 
-    <div class="columns is-centered section">
-        <div class="column is-three-quarters box">
-            <h2 class="title has-text-primary has-text-centered">Adresse</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20958.35600261324!2d2.3265918867724342!3d48.957398725007124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6691385571dad%3A0x7a8d68a0877a83f9!2sVilletaneuse!5e0!3m2!1sfr!2sfr!4v1583263900396!5m2!1sfr!2sfr"
-                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-            <h3>Villetaneuse 93430, France.</h3>
 
-        </div>
-    </div>
+
 
     {#    <div class="field">#}
     {#        <label class="label">Name</label>#}

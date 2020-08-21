@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Menu;
 
 use Symfony\Component\Form\AbstractType;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class MenuFormType extends AbstractType
+class CategoryFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,8 +23,8 @@ class MenuFormType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer un titre pour ce menu.']),
                     new Length([
-                        'min' => 8,
-                        'minMessage' => 'Le nom doit contenir au moin 8 caractères.',
+                        'min' => 5,
+                        'minMessage' => 'Le nom doit contenir au moin 5 caractères.',
                         'max' => 100,
                         'maxMessage' => 'Le nom ne doit pas contenir plus de 100 caractères.',
 
@@ -65,7 +66,7 @@ class MenuFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Menu::class,
+            'data_class' => Category::class,
             'csrf_protection' => false,
         ]);
     }

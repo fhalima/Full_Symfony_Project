@@ -6,13 +6,13 @@
 
 {% block content %}
 
-
     <div class="section menu-section">
 
         <div>
-            <ul class="is-inline-block" >
+            <ul class="is-inline-block">
                 <li class="home is-inline-block is-size-6">
-                    <a href="{{ path("home") }}" title="Aller à la page d'accueil" itemprop="item"><span itemprop="title">Accueil</span></a>
+                    <a href="{{ path("home") }}" title="Aller à la page d'accueil" itemprop="item"><span
+                                itemprop="title">Accueil</span></a>
                     <span> &gt; </span>
                 </li>
                 <li class="is-inline-block is-size-6">
@@ -25,10 +25,9 @@
 
         <div class="">
             <h1 class="h1 is-size-3 is-text-centered is-margin-20"> Succulence traiteur vous
-                propose {{ category.menus|length }} Formules pour  {{ category.titre }} </h1>
+                propose {{ category.menus|length }} Formules pour {{ category.titre }} </h1>
             <div class="menu-detaille-list">
-                {% for menu in category.menus %} {# @var menu App/Entity/Menu #}
-
+                {% for menu in category.menus %}
                     <div class="box menu-detaille">
                         <article class="media is-transparent">
                             <div class="media-left">

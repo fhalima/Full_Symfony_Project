@@ -27,23 +27,18 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="navbar-item" href="{{ path('admin_menu') }}">{# #}
-                    Menus
+                <a class="navbar-item" href="{{ path('admin_category') }}">{# #}
+                    Catégories
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="navbar-item" href="{{ path('admin_menudetaille') }}">
-                    Formules/Menus-Détaillés
+                <a class="navbar-item" href="{{ path('admin_menu') }}">
+                    Formules/Menus
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="navbar-item" href="{{path('admin_note')}}">
-                    Notes
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="navbar-item" href="#">{#{{path('admin_commentaire')}}#}
-                    Commentaires
+                    Notes / Commentaires
                 </a>
             </li>
             <li class="nav-item ">
@@ -56,7 +51,7 @@
                     <div class="navbar-item">
                         <div class="buttons">
 
-                            <a href="#" class="button is-primary is-small">
+                            <a href="{{ path('user_profile',{id: app.user.id}) }}" class="button is-primary is-small">
                                 <i class="fas fa-replay"></i>
                                 {{ app.user.pseudo }}
                             </a>

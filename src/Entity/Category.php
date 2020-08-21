@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Menu
+class Category
 {
     /**
      * @ORM\Id()
@@ -45,13 +45,13 @@ class Menu
     private $date_enregistrement;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MenuDetaille", mappedBy="id_menu", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="id_category", orphanRemoval=true)
      */
-    private $menudetailles;
+    private $menus;
 
     public function __construct()
     {
-        $this->menudetailles = new ArrayCollection();
+        $this->menus = new ArrayCollection();
     }
 
     /**
@@ -130,30 +130,30 @@ class Menu
     }
 
     /**
-     * @return Collection|MenuDetaille[]
+     * @return Collection|Menu[]
      */
-    public function getMenuDetailles(): Collection
+    public function getMenus(): Collection
     {
-        return $this->menudetailles;
+        return $this->menus;
     }
 
-    public function addMenuDetailles(MenuDetaille $menudetaille): self
+    public function addMenus(Menu $menu): self
     {
-        if (!$this->menudetailles->contains($menudetaille)) {
-            $this->menudetailles[] = $menudetaille;
-            $menudetaille->setIdMenu($this);
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setIdCategory($this);
         }
 
         return $this;
     }
 
-    public function removeMenuDetailles(MenuDetaille $menudetaille): self
+    public function removeMenus(Menu $menu): self
     {
-        if ($this->menudetailles->contains($menudetaille)) {
-            $this->menudetailles->removeElement($menudetaille);
+        if ($this->menus->contains($menu)) {
+            $this->menus->removeElement($menu);
             // set the owning side to null (unless already changed)
-            if ($menudetaille->getIdMenu() === $this) {
-                $menudetaille->setIdMenu(null);
+            if ($menu->getIdCategory() === $this) {
+                $menu->setIdCategory(null);
             }
         }
 

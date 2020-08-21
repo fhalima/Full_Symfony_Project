@@ -29,13 +29,13 @@ class Presentation
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MenuDetaille", mappedBy="presentation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="presentation")
      */
-    private $menuDetailles;
+    private $menus;
 
     public function __construct()
     {
-        $this->menuDetailles = new ArrayCollection();
+        $this->menus = new ArrayCollection();
         $this->setNom('');
     }
 
@@ -71,30 +71,30 @@ class Presentation
     }
 
     /**
-     * @return Collection|MenuDetaille[]
+     * @return Collection|Menu[]
      */
-    public function getMenuDetailles(): Collection
+    public function getMenus(): Collection
     {
-        return $this->menuDetailles;
+        return $this->menus;
     }
 
-    public function addMenuDetaille(MenuDetaille $menuDetaille): self
+    public function addMenu(Menu $menu): self
     {
-        if (!$this->menuDetailles->contains($menuDetaille)) {
-            $this->menuDetailles[] = $menuDetaille;
-            $menuDetaille->setPresentation($this);
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setPresentation($this);
         }
 
         return $this;
     }
 
-    public function removeMenuDetaille(MenuDetaille $menuDetaille): self
+    public function removeMenu(Menu $menu): self
     {
-        if ($this->menuDetailles->contains($menuDetaille)) {
-            $this->menuDetailles->removeElement($menuDetaille);
+        if ($this->menus->contains($menu)) {
+            $this->menus->removeElement($menu);
             // set the owning side to null (unless already changed)
-            if ($menuDetaille->getPresentation() === $this) {
-                $menuDetaille->setPresentation(null);
+            if ($menu->getPresentation() === $this) {
+                $menu->setPresentation(null);
             }
         }
 

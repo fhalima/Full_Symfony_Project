@@ -57,10 +57,10 @@
 
 
 {% set compt = 0 %}
-<h1 class="title has-text-primary has-text-centered"> {{ menuList|length }} Menus</h1>
+<h1 class="title has-text-primary has-text-centered"> {{ categoryList|length }} Catérories de Menus</h1>
 <div class="container">
 <div class="colonne-2">
-    {% for menu in menuList %} {# @var menu App/Entity/Menu #}
+    {% for category in categoryList %} {# @var menu App/Entity/Menu #}
 
     <article class="menu">
         <div class=" photo" style="background: url('{{asset('images/'~menu.photo) }}');">
@@ -79,9 +79,9 @@
 {#                            /10#}
 {#                        </span>#}
 {#                    <a href="{{ path('record_page', {}) }}" class="has-text-primary">#}
-                        <strong>{{menu.titre}}</strong>
+                        <strong>{{category.titre}}</strong>
                         {#                        </a>#}
-                    <small>{{menu.descriptioncourte}}</small>
+                    <small>{{category.descriptioncourte}}</small>
 {#                    <br>#}
 {#                    <div class="level">#}
 {#                        <small class="level-left">#}

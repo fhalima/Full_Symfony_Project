@@ -67,69 +67,20 @@
 
     {% set compt = 0 %}
 
-
-    {#        <h1 class="title has-text-primary has-text-centered"> {{ menuList|length }} Menus</h1>#}
     <div class="container menu-container">
-        {% for menu in menuList %} {# @var menu App/Entity/Menu #}
-
-            {#                <article class="box is-padding-0">#}
-            {#                    <div class="media ">#}
-            {#                        <a href="{{ path('menu_detaille_list', {id:menu.id}) }}">#}
-            {#                            <figure class="image media-left">#}
-
-            {#                                <img src="{{ asset('images/'~menu.photo) }}" title="{{ menu.titre }}-image"#}
-            {#                                     alt="{{ menu.titre }}-image" class= "is-75x75">#}
-            {#                            </figure>#}
-            {#                        </a>#}
-
-
-
-            {#                    #}{#                    <div class="contenu">#}
-            {#                    <div class="media-content">#}
-            {#                        <p class="content">#}
-            {#                                                <span class="tag is-primary">#}
-            {#                                                        /10#}
-            {#                                                    </span>#}
-            {#                            <a href="{{ path('menu_detaille_list', {id:menu.id}) }}" class="has-text-primary">#}
-            {#                                <strong>{{ menu.titre }}</strong>#}
-            {#                            </a>#}
-            {#                            <small>{{ menu.descriptioncourte }}</small>#}
-            {#                            #}{#                    <br>#}
-            {#                            #}{#                    <div class="level">#}
-            {#                            #}{#                        <small class="level-left">#}
-            {#                            #}{#                            #}{##}{#                            <strong>Lieu: {{ annonce.adresse }},  {{ annonce.cp }} {{ annonce.ville }},  {{ annonce.pays }}, </strong>#}
-            {#                            #}{#                            <a href="{{ path('home') }}">#}
-            {#                            #}{#                                <strong>.iduser.pseudo  </strong>#}
-            {#                            #}{#                            </a>#}
-            {#                            #}{#                        </small>#}
-            {#                            #}{#                        <small class="level-right ">#}
-            {#                            #}{#                            <strong class="has-text-danger">annonce.prix|number_format(2) &#8364; </strong>#}
-            {#                            #}{#                        </small>#}
-            {#                            #}{#                    </div>#}
-            {#                            #}{# {{ }}#}
-            {#                        </p>#}
-            {#                        #}{#            </div>#}
-            {#                    </div>#}
-            {#                    </div>#}
-            {#                </article>#}
-
+        {% for category in categoryList %} {# @var category App/Entity/Category #}
 
             <article class="menu menu-box box is-padding-0 is-vauto">
-
                 <div class="menu-list">
-
                     <div class=" menu-list-photo">
-                        <img src="{{ asset('images/'~menu.photo) }}" alt="">
+                        <img src="{{ asset('images/'~category.photo) }}" alt="">
                     </div>
-                    <a class="is-padding-0 " href="{{ path('menu_detaille_list',{id:menu.id}) }}">
+
+                    <a class="is-padding-0 " href="{{ path('menu_list',{id:category.id}) }}">
+
                         <div class=" menu-list-p-title is-margin-10">
                             <h3 class="">
-
-                                {#                <figure class="image is-100x100">#}
-                                {#                    <img src="{{asset('build/images/'~menu.photo) }}" title="{{menu.titre}}-image" alt="{{menu.titre}}-image">#}
-                                {#                </figure>#}
-                                <strong>{{ menu.titre }}</strong>
-
+                                <strong>{{ category.titre }}</strong>
                             </h3>
                             <h3 class="is-size-7">Découvrez notre sélection</h3>
                         </div>
@@ -137,38 +88,13 @@
                     </a>
                 </div>
 
-
                 <div class="contenu has-text-justified">
-                    {#            <div class="content">#}
                     <p class="">
-                        {#                    <span class="tag is-primary">#}
-                        {#                            /10#}
-                        {#                        </span>#}
-                        {#                    <a href="{{ path('record_page', {}) }}" class="has-text-primary">#}
-
-                        {#                        </a>#}
-                        <small>{{ menu.descriptioncourte }}</small>
-                        {#                    <br>#}
-                        {#                    <div class="level">#}
-                        {#                        <small class="level-left">#}
-                        {#                            #}{#                            <strong>Lieu: {{ annonce.adresse }},  {{ annonce.cp }} {{ annonce.ville }},  {{ annonce.pays }}, </strong>#}
-                        {#                            <a href="{{ path('home') }}">#}
-                        {#                                <strong>.iduser.pseudo  </strong>#}
-                        {#                            </a>#}
-                        {#                        </small>#}
-                        {#                        <small class="level-right ">#}
-                        {#                            <strong class="has-text-danger">annonce.prix|number_format(2) &#8364; </strong>#}
-                        {#                        </small>#}
-                        {#                    </div>#}
-                        {# {{ }}#}
+                        <small>{{ category.descriptioncourte }}</small>
                     </p>
-                    {#            </div>#}
                 </div>
             </article>
-
         {% endfor %}
 
-
-        {#    </div>#}
     </div>
 {% endblock %}

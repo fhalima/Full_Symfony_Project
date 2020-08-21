@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MenuDetailleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class MenuDetaille
+class Menu
 {
     /**
      * @ORM\Id()
@@ -21,7 +21,7 @@ class MenuDetaille
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="menuDetailles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="menus")
      * @ORM\JoinColumn(nullable=true)
      */
     private $id_category;
@@ -47,7 +47,7 @@ class MenuDetaille
     private $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Photos", inversedBy="menuDetaille", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Photos", inversedBy="menu", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_photos;
@@ -88,21 +88,22 @@ class MenuDetaille
      */
     private $ingredients;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $Suggestions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Presentation", inversedBy="menuDetailles", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Presentation", inversedBy="menus", cascade={"persist"})
      */
     private $presentation;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Note", mappedBy="menudetaille", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Note", mappedBy="menu", orphanRemoval=true, cascade={"persist"})
      * @ORM\OrderBy({"date_enregistrement"="DESC"})
      */
     private $notes;
+
+    /**
+     * @ORM\Column(type="string", length=180)
+     */
+    private $rubrique;
 
     /**
      * @ORM\PrePersist()
@@ -283,18 +284,6 @@ class MenuDetaille
         return $this;
     }
 
-    public function getSuggestions(): ?string
-    {
-        return $this->Suggestions;
-    }
-
-    public function setSuggestions(?string $Suggestions): self
-    {
-        $this->Suggestions = $Suggestions;
-
-        return $this;
-    }
-
     public function getPresentation(): ?Presentation
     {
         return $this->presentation;
@@ -319,7 +308,7 @@ class MenuDetaille
     {
         if (!$this->notes->contains($note)) {
             $this->notes[] = $note;
-            $note->setMenuDetaille($this);
+            $note->setMenu($this);
         }
 
         return $this;
@@ -330,8 +319,8 @@ class MenuDetaille
         if ($this->notes->contains($note)) {
             $this->notes->removeElement($note);
             // set the owning side to null (unless already changed)
-            if ($note->getMenuDetaille() === $this) {
-                $note->setMenuDetaille(null);
+            if ($note->getMenu() === $this) {
+                $note->setMenu(null);
             }
         }
 
@@ -355,6 +344,18 @@ class MenuDetaille
         // Moyenne
         $average = $sum / $this->notes->count();
         return $average;
+    }
+
+    public function getRubrique(): ?string
+    {
+        return $this->rubrique;
+    }
+
+    public function setRubrique(string $rubrique): self
+    {
+        $this->rubrique = $rubrique;
+
+        return $this;
     }
 
 }

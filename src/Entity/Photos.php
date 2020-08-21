@@ -17,12 +17,12 @@ class Photos
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo_1;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo_2;
 
@@ -42,9 +42,9 @@ class Photos
     private $photo_5;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\MenuDetaille", mappedBy="id_photos", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="Menu", mappedBy="id_photos", cascade={"persist", "remove"})
      */
-    private $menuDetaille;
+    private $menu;
 
     public function getId(): ?int
     {
@@ -111,18 +111,18 @@ class Photos
         return $this;
     }
 
-    public function getMenuDetaille(): ?MenuDetaille
+    public function getMenu(): ?Menu
     {
-        return $this->menuDetaille;
+        return $this->menu;
     }
 
-    public function setMenuDetaille(MenuDetaille $menuDetaille): self
+    public function setMenu(Menu $menu): self
     {
-        $this->menuDetaille = $menuDetaille;
+        $this->menu = $menu;
 
         // set the owning side of the relation if necessary
-        if ($menuDetaille->getIdPhotos() !== $this) {
-            $menuDetaille->setIdPhotos($this);
+        if ($menu->getIdPhotos() !== $this) {
+            $menu->setIdPhotos($this);
         }
 
         return $this;

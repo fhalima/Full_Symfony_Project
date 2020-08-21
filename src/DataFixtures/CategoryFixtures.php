@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Annonce;
+use App\Entity\Category;
 use App\Entity\Formule;
 use App\Entity\Menu;
 use App\Entity\User;
@@ -12,7 +13,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Categorie;
 
-class MenuFixtures extends BaseFixture
+class CategoryFixtures extends BaseFixture
 {
 
 
@@ -23,9 +24,9 @@ class MenuFixtures extends BaseFixture
 //        $this->projectDir = realpath(str_replace("src","",\dirname(__DIR__)));
         // La fonction anonyme sera exécutée 10 fois
 
-        $this->createMany(5, 'menu', function ($num) {
+        $this->createMany(5, 'category', function ($num) {
             // Construction de l'entité Menu
-            $menu = (new Menu())
+            $category = (new Category())
                 ->setTitre($this->faker->sentence(10))
 //                ->setPhoto($this->projectDir."\assets\images\indien4-600x600.jpg")
                 ->setPhoto(($num++).".jpg")
@@ -35,7 +36,7 @@ class MenuFixtures extends BaseFixture
             ;
 //            dd($this->projectDir);
             // Toujours retourner l'entité
-            return $menu;
+            return $category;
         });
         // Pour terminer, enregistrer
         $manager->flush();

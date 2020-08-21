@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="section">
+    <div class="section ">
         <h2 class="title is-padding-10 is-margin-0">
             Gestion des Notes-Commentaires
         </h2>
@@ -16,7 +16,7 @@
         <h3 class="subtitle">
 
         </h3>
-        <div class="is-scrollable">
+        <div class="is-scrollable is-centered">
             <div class="table-container ">
                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
                     <thead>
@@ -47,8 +47,8 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ path('menu_detaille_page',{id:note.menudetaille.id}) }}">
-                                    {{ note.menudetaille.id}} - {{ note.menudetaille.titre }}
+                                <a href="{{ path('menu_page',{id:note.menu.id}) }}">
+                                    {{ note.menu.id}} - {{ note.menu.titre }}
                                 </a>
                             </td>
                             <td>{{ note.value }}/10</td>
@@ -65,12 +65,12 @@
 
         {% include '/includes/flash_message.html.twig' %}
         {% if note_form is defined %}
-            <div class="form_container" id="form_anchor">
+            <div class="form_container is-centered" id="form_anchor">
 
                 {{ form_start(note_form) }}
 
                 {{ form_row(note_form.user, {label: 'Utilisateur', value: note_curr.user.id }) }}
-                {{ form_row(note_form.menudetaille, {label: 'Menu détaillé', value: note_curr.menudetaille.titre}) }}
+                {{ form_row(note_form.menu, {label: 'Menu', value: note_curr.menu.titre}) }}
                 {{ form_row(note_form.value, {label: 'Valeur', value: note_curr.value}) }}
                 {{ form_row(note_form.comment, {label: 'Commentaire', value: note_curr.comment}) }}
 

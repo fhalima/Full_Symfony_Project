@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class MenuDetailleFormType extends AbstractType
+class MenuFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,7 +24,7 @@ class MenuDetailleFormType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer un titre pour ce menu.']),
                     new Length([
-                        'min' => 8,
+                        'min' => 5,
                         'minMessage' => 'Le nom doit contenir au moin 8 caractères.',
                         'max' => 100,
                         'maxMessage' => 'Le nom ne doit pas contenir plus de 100 caractères.',
@@ -117,10 +117,38 @@ class MenuDetailleFormType extends AbstractType
                 'choices' => $options['presentationList'],
                 "choice_label" => function ($cats, $ind, $val) {
                     return ucfirst($cats);
+                }
+            ])
+            ->add('categorie', ChoiceType::class, [
+                'mapped' => false,
+                'choices' => $options['categoryTitreList'],
+                "choice_label" => function ($cats, $ind, $val) {
+                    return ucfirst($cats);
+                },
+            ])
+            ->add('rubrique', ChoiceType::class, [
+                'mapped' => false,
+                'choices' => [
+                    'Verines' => 'Verines',
+                    'Petits fours' => 'Petits fours',
+                    'Canapés & pains' => 'Canapés & pains',
+                    'Entrée' => 'Entrée',
+                    'Salade' => 'Salade',
+                    'Charcuterie' => 'Charcuterie',
+                    'Ralcettes et Fruits de mer' => 'Raclettes Fruits de mer',
+                    'Pizzas & quiches' => 'Pizza & quiches',
+                    'Gratins' => 'Gratins',
+                    'Tajines' => 'Tajines',
+                    'Traditionnelle' => 'Traditionnelle',
+                    'Végétarien' => 'Végétarien'
+
+                ],
+                "choice_label" => function ($cats, $ind, $val) {
+                    return ucfirst($cats);
                 },
             ])
             ->add('ingredients', TextType::class)
-            ->add('suggestions', TextType::class)
+//            ->add('suggestions', TextType::class)
             ->add('photo', FileType::class, [
                 'attr' => ['placeholder' => 'Choisir une image',
                     'value' => '',
@@ -191,5 +219,6 @@ class MenuDetailleFormType extends AbstractType
             'data_class' => Menu::class,
         ]);
         $resolver->setRequired('presentationList');
+        $resolver->setRequired('categoryTitreList');
     }
 }

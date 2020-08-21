@@ -24,10 +24,10 @@ class Note
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\MenuDetaille", inversedBy="notes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="notes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $menudetaille;
+    private $menu;
 
     /**
      * @ORM\Column(type="integer")
@@ -73,14 +73,14 @@ class Note
         return $this;
     }
 
-    public function getMenuDetaille(): ?MenuDetaille
+    public function getMenu(): ?Menu
     {
-        return $this->menudetaille;
+        return $this->menu;
     }
 
-    public function setMenuDetaille(?MenuDetaille $menuDetaille): self
+    public function setMenu(?Menu $menu): self
     {
-        $this->menudetaille = $menuDetaille;
+        $this->menu = $menu;
 
         return $this;
     }

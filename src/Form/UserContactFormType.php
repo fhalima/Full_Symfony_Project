@@ -19,6 +19,11 @@ class UserContactFormType extends AbstractType
     {
         $builder
             ->add('objet', ChoiceType::class, [
+                'attr' => [
+                    'placeholder' => 'User',
+                    'class' => 'custom-select',
+                    'id' => 'inputGroupSelect01'],
+                'label' => '',
                 'choices' => [
                     'devis' => 'Demande de devis',
                     'information' => 'Demande d\'information',
@@ -27,6 +32,11 @@ class UserContactFormType extends AbstractType
                 ],
             ])
             ->add('message', TextareaType::class, [
+                'attr' => ['form-control',
+                    'placeholder' => 'Message',
+                    'aria-label' => 'Messager',
+                    'aria-describedby' => 'basic-addon1'],
+
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez saisir un message.']),
                     new Length([

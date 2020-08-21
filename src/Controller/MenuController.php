@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\MenuDetaille;
+use App\Entity\Menu;
 use App\Entity\Note;
 use App\Form\NoteFormType;
-use App\Repository\MenuDetailleRepository;
+use App\Repository\MenuRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\NoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,31 +16,32 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * @Route("/menu/detaille", name="menu_detaille")
+ * @Route("/menu", name="menu")
  */
-class MenuDetailleController extends AbstractController
+class MenuController extends AbstractController
 {
     /**
-     * @Route("{id}", name="_page")
+     * @Route("/{id}", name="_page")
      */
-    public function MenuDetaillePage(Request $request,
+    public function MenusPage(Request $request,
                                      EntityManagerInterface $em,
                                      Security $security,
                                      NoteRepository $noteRepository,
-                                     MenuDetailleRepository $menuDetailleRepository,
-                                     MenuDetaille $menuDetaille)
+                                     MenuRepository $menuRepository,
+                                     Menu $menu)
     {
+
         if ($security->isGranted('ROLE_USER')) {
             // Rechercher une Note à modifier
             $note = $noteRepository->findOneBy([
-                'menudetaille' => $menuDetaille,
+                'menu' => $menu,
                 'user' => $this->getUser()
             ]);
 
             // Pas de Note existante: initialisation
             if ($note === null) {
                 $note = (new Note())
-                    ->setMenuDetaille($menuDetaille)
+                    ->setMenu($menu)
                     ->setUser($this->getUser());
             }
 
@@ -60,10 +61,10 @@ class MenuDetailleController extends AbstractController
 
 
 //        $id = $request->get('id');
-//        $menudetaille = $menuDetailleRepository->findOneBy(["id" => $id]);
+//        $menu = $menuRepository->findOneBy(["id" => $id]);
 
-        return $this->render('menu_detaille/menudetaille_page.html.twig', [
-            'menudetaille' => $menuDetaille,
+        return $this->render('menu/menu_page.html.twig', [
+            'menu' => $menu,
             'note_form' => isset($noteForm) ? $noteForm->createView() : null
         ]);
     }
@@ -78,15 +79,17 @@ class MenuDetailleController extends AbstractController
     }
 
     /**
-     * @Route("/list{id}", name="_list")
+     * @Route("/list/{id}", name="_list")
      */
-    public function MenuDetailleList(Request $request,
-                                     CategoryRepository $categoryRepository)
+    public function MenuList(
+        Request $request,
+                                     CategoryRepository $categoryRepository
+    )
     {
-        $id = $request->get('id');
+      $id = $request->get('id');
         $category = $categoryRepository->findOneBy(["id" => $id]);
-//dd($id);
-        return $this->render('menu_detaille/menudetaille_list.html.twig', [
+
+        return $this->render('menu/menu_list.html.twig', [
             'category' => $category,
 
         ]);

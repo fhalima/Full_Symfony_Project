@@ -5,14 +5,13 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Menu;
-use App\Entity\Menu;
 use App\Entity\Note;
 use App\Entity\Photos;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 
-class MenuDetailleFixtures extends BaseFixture implements DependentFixtureInterface
+class MenuFixtures extends BaseFixture implements DependentFixtureInterface
 {
     private $encoder;
 
@@ -20,9 +19,9 @@ class MenuDetailleFixtures extends BaseFixture implements DependentFixtureInterf
     public function loadData(ObjectManager $manager)
     {
 
-            $this->createMany(20, 'menudetaille', function ($num) {
+            $this->createMany(20, 'menu', function ($num) {
                 // Construction de l'entité categorie
-                $menudetaille = (new Menu())
+                $menu = (new Menu())
                     ->setIdCategory($this->getRandomReference('category'))
                     ->setNbrPersonnes($this->faker->numberBetween(1,15))
                     ->setDureePrepare($this->faker->numberBetween(1,15))
@@ -52,7 +51,7 @@ class MenuDetailleFixtures extends BaseFixture implements DependentFixtureInterf
                         $photo->setPhoto5($this->faker->imageUrl(200, 200));
                     }
                 }
-                $menudetaille->setIdPhotos($photo);
+                $menu->setIdPhotos($photo);
 
                 // Création des notes de l'album
 
@@ -63,7 +62,7 @@ class MenuDetailleFixtures extends BaseFixture implements DependentFixtureInterf
 
                 // Création des notes
                 foreach ($users as $user) {
-                    $date = $this->faker->dateTimeBetween($menudetaille->getDateEnregistrement());
+                    $date = $this->faker->dateTimeBetween($menu->getDateEnregistrement());
 
                     $note = (new Note())
                         ->setUser($user)
@@ -76,13 +75,13 @@ class MenuDetailleFixtures extends BaseFixture implements DependentFixtureInterf
                         $note->setComment($this->faker->realText());
                     }
 
-                    // Ajout de la note au menudetaille
-                    $menudetaille->addNote($note);
+                    // Ajout de la note au menu
+                    $menu->addNote($note);
                 }
 
 
                 // Toujours retourner l'entité
-                return $menudetaille;
+                return $menu;
             });
             // Pour terminer, enregistrer
             $manager->flush();

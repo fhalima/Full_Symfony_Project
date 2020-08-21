@@ -1,29 +1,34 @@
 //Importer Font Awesome
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+//@import "bootstrap/scss/bootstrap";
 //import Bulma
 //@import "~bulma";
 //changer une variable de Bulma(couleur primaire):
-$primary: #eb5958;
-$link: #eb5958;
+//$primary: #ff7f00 ;
+//$primary: #eb5958;
+$primary: #ff8300;
+//$link: #eb5958;
+$link: #ff8300;
 // variables
 
 /*couleurs*/
-$gris: rgb(136, 132, 132);
-$gris-fonce: rgb(26, 25, 25);
-$gris-clair: rgb(160, 158, 158);
-$gris-tres-clair: rgb(216, 216, 216);
-$bleu: rgb(50, 143, 248);
-$bleu-fonce: rgb(70, 50, 248);
+//$gris: rgb(136, 132, 132);
+//$gris-fonce: rgb(26, 25, 25);
+//$gris-clair: rgb(160, 158, 158);
+//$gris-tres-clair: rgb(216, 216, 216);
+//$bleu: rgb(50, 143, 248);
+//$bleu-fonce: rgb(70, 50, 248);
 $blanc: white;
-$color-blue: #3e64ff;
-$color-gris-clair: #f4f4f4;
-$color-gris-fonce: #333333;
-$color-gris: #d1cdcddc;
-$color-rose: #f54291;
-$color-violet: #7e0cf5;
+$or: #FFD700;
+//$color-blue: #3e64ff;
+//$color-gris-clair: #f4f4f4;
+//$color-gris-fonce: #333333;
+//$color-gris: #d1cdcddc;
+//$color-rose: #f54291;
+//$color-violet: #7e0cf5;
 
 /*conteneur*/
-$container: 960px;
+$container: 90%;
 $container-fluid: 100%;
 
 /* grilles */
@@ -80,25 +85,25 @@ $rayon: 5px;
 //mixin
 @mixin smartphone-tablette() {
   @media #{$smartphone-portrait}, #{$smartphone-paysage} {
-    width: $container-fluid!important;
-    font-size: 12px!important;
+    width: $container-fluid !important;
+    font-size: 12px !important;
     @include columns(1);
   }
   @media #{$tablette-paysage} {
-    width: $container-fluid!important;
-    font-size: 12px!important;
+    width: $container-fluid !important;
+    font-size: 12px !important;
     @include columns(3);
   }
   @media  #{$tablette-portrait} {
-    width: $container-fluid!important;
-    font-size: 12px!important;
+    width: $container-fluid !important;
+    font-size: 12px !important;
     @include columns(2);
   }
 }
 
 @mixin ordinateur() {
   @media #{$ordi} {
-    width: $container!important;
+    width: $container !important;
 
   }
 }
@@ -110,15 +115,21 @@ $rayon: 5px;
 }
 
 //Mise en forme
+
 body {
-  //background-image: url('../../public/images/image-fond-2.jpg');
+  font-family: Helvetica, Arial, sans-serif;
   background-repeat: repeat;
   background-blend-mode: screen;
-  //background-color: rgba(255, 230, 184, 0.5);
   background-color: white;
   margin: 0 !important;
   padding: 0 !important;
-  //background: white;
+}
+
+.container {
+  margin: 0 auto !important;
+  width: $container !important;
+  text-align: center;
+  min-height: 100vh !important;
 }
 
 .home-page {
@@ -126,18 +137,45 @@ body {
   height: 100% !important;
 }
 
-.container {
-  margin: 0 auto !important;
-  width: $container !important;
-  text-align: center;
-  font-family: Arial, sans-serif; // impacter toutes les balises => changer leur font
-  min-height: 100vh !important;
+.dropdown:hover {
+  & > .dropdown-menu {
+    display: block;
 
+    & > a:hover {
+      color: $primary;
+    }
+  }
 
+  & > a {
+    color: $primary !important;
+  }
 }
 
-//body {min-height: calc(100vh - 128px);}
+.dropdown > .dropdown-toggle:active {
+  pointer-events: none; // Add this, to prevent clicking dropdown's default click function
+}
 
+.nav-item:hover > a {
+  color: $primary !important;
+}
+
+.dropdown-menu {
+  background: $primary;
+
+  & > a {
+    color: white;
+  }
+}
+
+.cookiealert {
+  background: $primary;
+  color: white;
+}
+
+//font-family: Arial, sans-serif; // impacter toutes les balises => changer leur font
+//background-color: rgba(255, 230, 184, 0.5);
+//body {min-height: calc(100vh - 128px);}
+//background-image: url('../../public/images/image-fond-2.jpg'); zzzzzzz
 table {
   //vertical-align:middle;
 
@@ -165,6 +203,10 @@ table {
   height: 80vh !important;
   position: relative;
 
+}
+
+is-or {
+  font: $or !important;
 }
 
 .is-scrollable {
@@ -196,9 +238,6 @@ table {
   font-size: 10px !important;
 }
 
-.logo {
-  max-height: 4rem !important;
-}
 
 .is-burger-activate {
   width: $container-fluid;
@@ -211,18 +250,18 @@ table {
   //flex-direction: column;
   //justify-content: space-between;
   //text-align: right;
-  height: 100% !important;
-
-  a {
-    padding: 0 !important;
-    margin: 0 !important;
-
-    p {
-      padding: 0 !important;
-      margin: 0 !important;
-
-    }
-  }
+  //height: 100% !important;
+  //
+  //a {
+  //  padding: 0 !important;
+  //  margin: 0 !important;
+  //
+  //  p {
+  //    padding: 0 !important;
+  //    margin: 0 !important;
+  //
+  //  }
+  //}
 }
 
 .content {
@@ -302,20 +341,22 @@ h2 {
   text-align: left;
 }
 
-.menu-container{
+.menu-container {
   @include columns(4);
   @include smartphone-tablette();
   @include ordinateur();
 }
+
 .menu-list-title {
   &:hover {
 
   }
 }
 
-.menu-box{
-  width: 217px!important;
+.menu-box {
+  width: 217px !important;
 }
+
 .menu-list-photo {
   //position:relative!important;
   img {
@@ -337,7 +378,7 @@ h2 {
 .menu {
 
   ////position: relative;
-  height: 350px!important;
+  height: 350px !important;
   //width: 300px;
   padding: 0;
   background-color: rgba(190, 235, 233, 0.1) !important;
@@ -372,19 +413,20 @@ h2 {
     }
 
 
-
-
   }
-  &:hover .menu-list-photo>img {
-    opacity: 1!important;
+
+  &:hover .menu-list-photo > img {
+    opacity: 1 !important;
   }
 }
-.menu-detaille{
+
+.menu-detaille {
   background-color: rgba(190, 235, 233, 0.1) !important;
-  article{
+
+  article {
     @media #{$smartphone-portrait}, #{$smartphone-paysage} {
-      width: $container-fluid!important;
-      font-size: 12px!important;
+      width: $container-fluid !important;
+      font-size: 12px !important;
       display: flex;
       justify-content: space-evenly;
       flex-direction: column;
@@ -393,6 +435,7 @@ h2 {
   }
 
 }
+
 .menu-liste {
   display: grid !important;
   grid-template-columns: 1fr 1fr;
@@ -461,13 +504,44 @@ nav {
   content: "" !important;
 }
 
+//.glow {
+//  font-size: 15px;
+//  color: #fff;
+//  text-align: center;
+//  -webkit-animation: glow 1s ease-in-out infinite alternate;
+//  -moz-animation: glow 1s ease-in-out infinite alternate;
+//  animation: glow 1s ease-in-out infinite alternate;
+//}
+
+//@-webkit-keyframes glow {
+//  from {
+//    text-shadow: 0 0 10px #fff,
+//                 0 0 20px #fff,
+//                 0 0 30px $or,
+//                 0 0 40px $or,
+//                 0 0 50px $or,
+//                 0 0 60px $or,
+//                 0 0 70px $or;
+//  }
+//  to {
+//    text-shadow: 0 0 20px #fff,
+//                 0 0 30px #ff4da6,
+//                 0 0 40px #ff4da6,
+//                 0 0 50px #ff4da6,
+//                 0 0 60px #ff4da6,
+//                 0 0 70px #ff4da6,
+//                 0 0 80px #ff4da6;
+//  }
+//}
 .is-100vh {
   height: calc(100vh - 91px) !important;
   width: auto !important;
 }
-.is-white{
-  background: white!important;
+
+.is-white {
+  background: white !important;
 }
+
 .is-200x200 {
   width: 200px !important;
   height: 200px !important;
@@ -513,6 +587,10 @@ nav {
   padding: 0 !important;
 }
 
+.is-padding-5 {
+  padding: 5px !important;
+}
+
 .is-padding-10 {
   padding: 10px !important;
 }
@@ -524,9 +602,15 @@ nav {
 .is-margin-20 {
   margin: 20px;
 }
+
+.is-margin-20-pour-cent {
+  margin: 20% !important;
+}
+
 .is-margin-10 {
   margin: 10px;
 }
+
 .is-4-columns {
   @include columns(4);
 }
@@ -558,7 +642,7 @@ nav {
 }
 
 .is-vauto {
-  margin: auto 0!important;
+  margin: auto 0 !important;
 }
 
 .is-icon {
@@ -597,6 +681,20 @@ label.custom-file-label {
 .p-details {
   margin: 0 20px;
   padding: 20px 30px;
+}
+
+.cookiealert {
+  width: 350px !important;
+  height: 300px !important;
+  right: -10px;
+  border-top-right-radius: 20%;
+  border-bottom-right-radius: 10%;
+  background: $primary;
+  color: white;
+}
+
+.img-cookies {
+  padding: 0 0 0 20px !important;
 }
 
 .h-details {
